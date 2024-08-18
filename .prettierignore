@@ -45,3 +45,8 @@ Thumbs.db
 
 .env*
 !.env.example
+
+# Theme primeng
+
+/src/styles/theme/theme-base
+/src/styles/theme/lara/extensions

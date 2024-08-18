@@ -1,4 +1,6 @@
 @import 'styles/globals';
 
 body {
+  font-family: var(--font-family-base), sans-serif;
+  @apply bg-gray-100;
 }
