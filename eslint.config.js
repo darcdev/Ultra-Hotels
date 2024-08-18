@@ -6,6 +6,7 @@ const ts = require('@typescript-eslint/eslint-plugin');
 const ng = require('@angular-eslint/eslint-plugin');
 const ngTemplate = require('@angular-eslint/eslint-plugin-template');
 const prettier = require('eslint-plugin-prettier');
+const { plugins } = require('./tailwind.config');
 
 module.exports = [
   {
@@ -68,6 +69,9 @@ module.exports = [
     languageOptions: {
       globals: {
         ...globals.jasmine,
+      },
+      parserOptions: {
+        project: ['./tsconfig.spec.json'],
       },
     },
   },
