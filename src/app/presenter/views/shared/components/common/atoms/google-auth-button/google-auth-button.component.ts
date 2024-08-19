@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-google-auth-button',
@@ -9,4 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class GoogleAuthButtonComponent {
   @Input({ required: true }) description = '';
+  @Output() clickButton = new EventEmitter<void>();
+
+  onClickButton() {
+    this.clickButton.emit();
+  }
 }

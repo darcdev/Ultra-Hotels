@@ -1,7 +1,7 @@
 .google-auth-button {
   @apply flex items-center;
   @apply rounded-full;
-  border : 1px solid rgb(var(--ds-gray-color-200));
+  border: 1px solid rgb(var(--ds-gray-color-200));
   @apply px-5 py-2;
   @apply w-full;
 }
@@ -11,17 +11,17 @@
 
 .google-auth-button .google-auth-button__icon {
   flex: 1;
-  width : 2rem;
-  height : 2rem;
-  background-image : url("/assets/img/google-icon.svg");
-  background-repeat : no-repeat;
-  min-width : 3rem;
-  background-size : 2rem 2rem;
+  width: 2rem;
+  height: 2rem;
+  background-image: url('/assets/img/google-icon.svg');
+  background-repeat: no-repeat;
+  min-width: 3rem;
+  background-size: 2rem 2rem;
 }
 
-.google-auth-button .google-auth-button__description{
+.google-auth-button .google-auth-button__description {
   @apply inline-block;
   @apply w-full;
   flex: 6;
-  @apply text-center ;
+  @apply text-center;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -18,6 +19,13 @@ import { TravelAgenterAuthenticationFormComponent } from '@/app/presenter/views/
 import { TravellerAuthenticationFormComponent } from '@/app/presenter/views/shared/components/common/organisms/auth/traveller-authentication-form/traveller-authentication-form.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AuthenticationFormModalComponent } from '@/app/presenter/views/shared/components/common/organisms/auth/authentication-form-modal/authentication-form-modal.component';
+import { AuthenticateUserOAuthService } from '@/app/domain/usecases/user/authenticate-user-oauth.service';
+import { OauthProviders } from '@/app/core/constants/OauthProviders';
+import { CreateSimpleAccountUserUseCaseService } from '@/app/domain/usecases/user/create-simple-account-user-use-case.service';
+import { RegisterUserRequestDTO } from '@/app/core/models/dto/auth';
+import { ActorRoles } from '@/app/core/constants/ActorRoles';
+import { ErrorsFormMessagesComponent } from '@/app/presenter/views/shared/components/common/organisms/errors-form-messages/errors-form-messages.component';
+import { matchPasswords } from '@/app/presenter/views/shared/validators/matchPasswords';
 
 @Component({
   selector: 'app-traveller-register-form',
@@ -32,6 +40,8 @@ import { AuthenticationFormModalComponent } from '@/app/presenter/views/shared/c
     ToggleButtonModule,
     TravelAgenterAuthenticationFormComponent,
     TravellerAuthenticationFormComponent,
+    FormsModule,
+    ErrorsFormMessagesComponent,
   ],
   templateUrl: './traveller-register-form.component.html',
   styleUrl: './traveller-register-form.component.scss',
@@ -44,13 +54,57 @@ export class TravellerRegisterFormComponent {
 
   constructor(
     private dialogService: DialogService,
-    private refRegisterTraveller: DynamicDialogRef
+    private refRegisterTraveller: DynamicDialogRef,
+    private oauthUserUseCaseService: AuthenticateUserOAuthService,
+    private createSimpleAccountUserUseCaseService: CreateSimpleAccountUserUseCaseService
   ) {
-    this.travellerRegisterForm = new FormGroup<RegisterTravellerForm>({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
-      repeatPassword: new FormControl('', [Validators.required]),
+    this.travellerRegisterForm = new FormGroup<RegisterTravellerForm>(
+      {
+        email: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required, Validators.email],
+        }),
+        password: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        repeatPassword: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      },
+      { validators: [matchPasswords('password', 'repeatPassword')] }
+    );
+  }
+
+  async registerUserWithGoogle() {
+    await this.oauthUserUseCaseService.execute({
+      provider: OauthProviders.GOOGLE,
     });
+  }
+
+  async registerUserEmailAndPassword() {
+    if (this.travellerRegisterForm.invalid) {
+      this.travellerRegisterForm.markAllAsTouched();
+      return;
+    }
+    try {
+      const userDataRegister = this.travellerRegisterForm.value;
+
+      const userDataRegisterDTO: RegisterUserRequestDTO = {
+        email: userDataRegister.email ?? '',
+        password: userDataRegister.password ?? '',
+        role: ActorRoles.TRAVELLER,
+      };
+
+      const { data } =
+        await this.createSimpleAccountUserUseCaseService.execute(
+          userDataRegisterDTO
+        );
+      console.log(data);
+    } catch (error) {
+      console.log('Ha ocurrido un error al registrar el usuario', error);
+    }
   }
 
   openLoginModal() {

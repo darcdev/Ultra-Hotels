@@ -1,0 +1,63 @@
+@if (hasErrorWhenDirty('min')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe ser como mínimo {{
+        getErrorProperty('min', 'min')
+      }}"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('max')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe ser como máximo {{
+        getErrorProperty('max', 'max')
+      }}"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('required')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} es requerido"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('email')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe ser un correo válido"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('minlength')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe tener al menos {{
+        getErrorProperty('minlength', 'requiredLength')
+      }} caracteres"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('maxlength')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe tener como máximo {{
+        getErrorProperty('maxlength', 'requiredLength')
+      }} caracteres"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('passwordsMismatch')) {
+  <div class="mt-2">
+    <p-message severity="error" text="Las contraseñas no coinciden"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('pattern')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe seguir el patrón {{
+        getErrorProperty('pattern', 'requiredPattern')
+      }}"></p-message>
+  </div>
+} @else if (hasErrorWhenDirty('null')) {
+  <div class="mt-2">
+    <p-message
+      severity="error"
+      text="{{ displayName }} debe tener un valor"></p-message>
+  </div>
+}

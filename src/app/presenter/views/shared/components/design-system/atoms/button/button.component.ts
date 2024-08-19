@@ -13,6 +13,7 @@ export class ButtonComponent implements OnInit {
   @Input() size: 'small' | 'large' | undefined;
   @Input() classStyles = '';
   @Input() variant = 'primary';
+  @Input() type = 'button';
 
   ngOnInit() {
     console.log(this.variant);
