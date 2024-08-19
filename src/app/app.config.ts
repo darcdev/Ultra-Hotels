@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideNgIconsConfig } from '@ng-icons/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideNgIconsConfig({
       size: '2rem',
     }),
+    provideAnimationsAsync(),
   ],
 };

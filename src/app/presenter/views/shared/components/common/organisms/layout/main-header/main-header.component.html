@@ -4,13 +4,17 @@
       <img
         class="main-brand__logo"
         src="/assets/img/main-logo-ultra-hotels-transparent.png"
-        width="70px"
-        height="70px"
+        width="60px"
+        height="60px"
         alt="Ultra Hotels logo" />
-      <h1 class="main-brand__name_app text-display-md">UltraHotels</h1>
+      <h1 class="main-brand__name_app text-display-sm">UltraHotels</h1>
     </div>
     <div>
-      <app-button text="Ingresar" size="small" classStyles="font-bold">
+      <app-button
+        text="Ingresar"
+        size="small"
+        classStyles="font-bold"
+        (click)="openAuthenticationModal()">
         <span class="mr-4">
           <app-icon name="matLoginRound" size="1.5rem"></app-icon>
         </span>

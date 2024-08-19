@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MainFooterComponent } from '@/app/presenter/views/shared/components/common/organisms/main-footer/main-footer.component';
+import { MainFooterComponent } from '@/app/presenter/views/shared/components/common/organisms/layout/main-footer/main-footer.component';
 
 @Component({
   selector: 'app-travel-agent-layout',

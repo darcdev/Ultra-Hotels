@@ -1,0 +1,22 @@
+<form class="travel-agent-authentication-form">
+  <p-floatLabel class="w-full">
+    <input
+      id="email"
+      type="email"
+      pInputText
+      class="w-full"
+      [formControl]="travelAgentAuthForm.controls.email" />
+    <label for="email">Correo</label>
+  </p-floatLabel>
+  <p-floatLabel class="w-full">
+    <input
+      id="password"
+      type="password"
+      pInputText
+      class="w-full"
+      autocomplete="current-password"
+      [formControl]="travelAgentAuthForm.controls.password" />
+    <label for="password">Contraseña</label>
+  </p-floatLabel>
+  <app-button text="Ingresar a mi cuenta"></app-button>
+</form>

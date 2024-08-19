@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MainHeaderComponent } from '@/app/presenter/views/shared/components/common/organisms/main-header/main-header.component';
-import { MainFooterComponent } from '@/app/presenter/views/shared/components/common/organisms/main-footer/main-footer.component';
+import { MainHeaderComponent } from '@/app/presenter/views/shared/components/common/organisms/layout/main-header/main-header.component';
+import { MainFooterComponent } from '@/app/presenter/views/shared/components/common/organisms/layout/main-footer/main-footer.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({

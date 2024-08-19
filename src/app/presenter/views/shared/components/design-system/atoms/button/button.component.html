@@ -1,4 +1,7 @@
-<p-button class="ds-button" [size]="size" [styleClass]="classStyles">
+<p-button
+  [class]="['ds-button', variant]"
+  [size]="size"
+  [styleClass]="classStyles">
   <ng-content></ng-content>
   <span>{{ text }}</span>
 </p-button>

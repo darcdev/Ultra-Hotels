@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Button } from 'primeng/button';
 
 @Component({
@@ -8,8 +8,13 @@ import { Button } from 'primeng/button';
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
 })
-export class ButtonComponent {
+export class ButtonComponent implements OnInit {
   @Input() text = '';
   @Input() size: 'small' | 'large' | undefined;
   @Input() classStyles = '';
+  @Input() variant = 'primary';
+
+  ngOnInit() {
+    console.log(this.variant);
+  }
 }

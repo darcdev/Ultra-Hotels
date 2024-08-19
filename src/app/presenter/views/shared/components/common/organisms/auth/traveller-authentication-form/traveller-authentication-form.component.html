@@ -1,0 +1,37 @@
+<div>
+  <div class="oauth-container">
+    <div class="w-full">
+      <app-google-auth-button
+        description="Ingresar con tu cuenta de Google"></app-google-auth-button>
+    </div>
+    <div class="w-full flex items-center gap-2">
+      <div class="separator-oauth"></div>
+      <span class="inline-block w-[5%] text-center"><i>o</i></span>
+      <div class="separator-oauth"></div>
+    </div>
+  </div>
+  <form class="traveller-authentication-form">
+    <p-floatLabel class="w-full">
+      <input
+        id="email"
+        type="email"
+        pInputText
+        class="w-full"
+        [formControl]="travellerAuthForm.controls.email" />
+      <label for="email">Correo</label>
+    </p-floatLabel>
+    <p-floatLabel class="w-full">
+      <input
+        id="password"
+        type="password"
+        pInputText
+        class="w-full"
+        autocomplete="current-password"
+        [formControl]="travellerAuthForm.controls.password" />
+      <label for="password">Contraseña</label>
+    </p-floatLabel>
+    <app-button text="Ingresar a mi cuenta"></app-button>
+
+    <p>No tengo cuenta. <button type="button" class="register-redirect-button" (click)="openRegisterModal()">Registrarme</button></p>
+  </form>
+</div>

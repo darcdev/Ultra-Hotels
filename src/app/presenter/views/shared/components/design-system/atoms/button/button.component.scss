@@ -1,3 +1,13 @@
 .ds-button {
   @apply flex items-center;
 }
+
+::ng-deep p-button.ds-button.primary .p-button {
+  background : rgb(var(--ds-primary-color));
+  border: 1px solid rgb(var(--ds-primary-color));
+}
+
+::ng-deep p-button.ds-button.secondary .p-button {
+    background : rgb(var(--secondary-color));
+    border: 1px solid rgb(var(--secondary-color));
+}

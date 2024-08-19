@@ -11,7 +11,7 @@
   @apply rounded-lg;
   max-width: 80rem;
   width: 100%;
-  margin : 0 auto;
+  margin: 0 auto;
   min-height: calc(100vh - var(--main-header-height) - 5rem);
 }
 
@@ -19,6 +19,6 @@
   @apply block;
   width: 100%;
   max-width: 80rem;
-  margin : 0 auto;
+  margin: 0 auto;
   @apply mt-3;
 }
