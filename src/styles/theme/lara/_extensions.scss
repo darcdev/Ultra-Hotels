@@ -155,4 +155,32 @@
       }
     }
   }
+
+  .p-float-label textarea:focus ~ label {
+    color: $inputFocusBorderColor;
+  }
+
+  // when password field has error
+  .p-inputtext.ng-touched.ng-invalid,
+  .p-inputtext.dirty.ng-invalid,
+  p-password.ng-invalid.ng-dirty > .p-password > .p-inputtext,
+  p-password.ng-invalid.ng-touched > .p-password > .p-inputtext {
+    @include invalid-input();
+    box-shadow:
+      inset 0 0 0 1px $inputErrorBorderColor,
+      inset 0 0 0 1px $inputErrorBorderColor,
+      inset 0 0 0 1px $inputErrorBorderColor,
+      inset 0 0 0 1px $inputErrorBorderColor;
+  }
+
+  .p-float-label > textarea.ng-invalid.ng-dirty + label,
+  .p-float-label > input.ng-invalid.ng-touched + label {
+    color: $inputErrorBorderColor;
+  }
+
+  /** input control **/
+  .p-checkbox-label,
+  p-radiobutton + label {
+    cursor: pointer;
+  }
 }

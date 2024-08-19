@@ -40,7 +40,10 @@
   </div>
   <div class="authentication-user__body">
     @if (isTravelAgent) {
-      <app-travel-agenter-authentication-form></app-travel-agenter-authentication-form>
+      <app-travel-agenter-authentication-form
+        [closeAuthenticationDialog]="
+          closeDialog.bind(this)
+        "></app-travel-agenter-authentication-form>
     } @else {
       <app-traveller-authentication-form
         [closeAuthenticationDialog]="

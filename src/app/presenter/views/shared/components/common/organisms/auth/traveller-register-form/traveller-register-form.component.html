@@ -14,7 +14,9 @@
     <div class="register-user__body">
       <div class="oauth-container">
         <div class="w-full">
-          <app-google-auth-button description="Registrate con tu cuenta de Google"></app-google-auth-button>
+          <app-google-auth-button
+            (clickButton)="registerUserWithGoogle()"
+            description="Registrate con tu cuenta de Google"></app-google-auth-button>
         </div>
         <div class="w-full flex items-center gap-2">
           <div class="separator-oauth"></div>
@@ -23,37 +25,54 @@
         </div>
       </div>
       <form class="traveller-authentication-form">
-        <p-floatLabel class="w-full">
-          <input
-            id="email"
-            type="email"
-            pInputText
-            class="w-full"
-            [formControl]="travellerRegisterForm.controls.email" />
-          <label for="email">Correo</label>
-        </p-floatLabel>
-        <p-floatLabel class="w-full">
-          <input
-            id="password"
-            type="password"
-            pInputText
-            class="w-full"
-            autocomplete="current-password"
-            [formControl]="travellerRegisterForm.controls.password" />
-          <label for="password">Contraseña</label>
-        </p-floatLabel>
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="email"
+              type="email"
+              pInputText
+              class="w-full"
+              [formControl]="travellerRegisterForm.controls.email" />
+            <label for="email">Correo</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="travellerRegisterForm.controls.email"
+            displayName="El correo"></app-errors-form-messages>
+        </div>
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="password"
+              type="password"
+              pInputText
+              class="w-full"
+              autocomplete="current-password"
+              [formControl]="travellerRegisterForm.controls.password" />
+            <label for="password">Contraseña</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="travellerRegisterForm.controls.password"
+            displayName="La contraseña"></app-errors-form-messages>
+        </div>
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="repeat-password"
+              type="password"
+              pInputText
+              class="w-full"
+              [formControl]="travellerRegisterForm.controls.repeatPassword" />
+            <label for="repeat-password">Repetir Contraseña</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="travellerRegisterForm.controls.repeatPassword"
+            displayName="La contraseña repetida"></app-errors-form-messages>
+        </div>
 
-        <p-floatLabel class="w-full">
-          <input
-            id="repeat-password"
-            type="password"
-            pInputText
-            class="w-full"
-            [formControl]="travellerRegisterForm.controls.repeatPassword" />
-          <label for="repeat-password">Repetir Contraseña</label>
-        </p-floatLabel>
-
-        <app-button text="Crear mi cuenta"></app-button>
+        <app-button
+          text="Crear mi cuenta"
+          type="submit"
+          (click)="registerUserEmailAndPassword()"></app-button>
 
         <p>
           Ya tengo cuenta.

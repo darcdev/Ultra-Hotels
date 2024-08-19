@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideNgIconsConfig } from '@ng-icons/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { getAllProviders } from '@/app/core/factories/providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +14,6 @@ export const appConfig: ApplicationConfig = {
       size: '2rem',
     }),
     provideAnimationsAsync(),
+    ...getAllProviders,
   ],
 };

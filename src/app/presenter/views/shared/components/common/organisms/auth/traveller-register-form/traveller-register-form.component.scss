@@ -2,7 +2,7 @@
   @apply flex flex-col items-center;
 }
 
-.register-user__header .register-user__header__title{
+.register-user__header .register-user__header__title {
   @apply font-bold;
 }
 
@@ -22,7 +22,7 @@
   @apply mt-8;
 }
 
-.register-user__body .oauth-container .separator-oauth{
+.register-user__body .oauth-container .separator-oauth {
   height: 1px;
   width: 45%;
   display: inline-block;

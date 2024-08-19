@@ -8,9 +8,8 @@ describe('GoogleAuthButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoogleAuthButtonComponent]
-    })
-    .compileComponents();
+      imports: [GoogleAuthButtonComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GoogleAuthButtonComponent);
     component = fixture.componentInstance;

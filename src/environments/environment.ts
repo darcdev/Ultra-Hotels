@@ -1,3 +1,5 @@
 export const environment = {
-  apiUrl: '',
+  supabaseUrl: '',
+  supabaseKey: '',
+  redirectOAuthUrl: '',
 };

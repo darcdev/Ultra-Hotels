@@ -10,15 +10,19 @@
       <h1 class="main-brand__name_app text-display-sm">UltraHotels</h1>
     </div>
     <div>
-      <app-button
-        text="Ingresar"
-        size="small"
-        classStyles="font-bold"
-        (click)="openAuthenticationModal()">
-        <span class="mr-4">
-          <app-icon name="matLoginRound" size="1.5rem"></app-icon>
-        </span>
-      </app-button>
+      @if (!sessionUser) {
+        <app-button
+          text="Ingresar"
+          size="small"
+          classStyles="font-bold"
+          (click)="openAuthenticationModal()">
+          <span class="mr-4">
+            <app-icon name="matLoginRound" size="1.5rem"></app-icon>
+          </span>
+        </app-button>
+      } @else {
+        <app-user-logged-panel></app-user-logged-panel>
+      }
     </div>
   </div>
 </header>
