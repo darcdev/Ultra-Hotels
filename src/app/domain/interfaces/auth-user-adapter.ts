@@ -1,7 +1,7 @@
 import {
   LoginUserRequestDTO,
   RegisterUserRequestDTO,
-} from '@/app/core/models/dto/auth';
+} from '@/app/core/models/dtos/auth';
 import { AuthResponse, OAuthResponse } from '@supabase/supabase-js';
 import { LogOutRequest, OAuthInfoRequest } from '@/app/core/models/auth';
 

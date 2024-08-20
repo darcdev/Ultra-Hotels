@@ -8,12 +8,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { LoginUserForm } from '@/app/presenter/models/auth-users.model';
+import { LoginUserForm } from '@/app/presenter/models/form/auth-users.model';
 import { GoogleAuthButtonComponent } from '@/app/presenter/views/shared/components/common/atoms/google-auth-button/google-auth-button.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TravellerRegisterFormComponent } from '@/app/presenter/views/shared/components/common/organisms/auth/traveller-register-form/traveller-register-form.component';
 import { OauthProviders } from '@/app/core/constants/OauthProviders';
-import { LoginUserRequestDTO } from '@/app/core/models/dto/auth';
+import { LoginUserRequestDTO } from '@/app/core/models/dtos/auth';
 import { SimpleUserLoginUseCaseService } from '@/app/domain/usecases/user/simple-user-login-use-case-service';
 import { AuthenticateUserOAuthService } from '@/app/domain/usecases/user/authenticate-user-oauth.service';
 import { MessageModule } from 'primeng/message';

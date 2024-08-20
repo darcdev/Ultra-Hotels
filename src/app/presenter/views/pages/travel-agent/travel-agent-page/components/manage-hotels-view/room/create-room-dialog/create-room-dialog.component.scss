@@ -1,0 +1,7 @@
+.create-room-container {
+  @apply px-lg;
+}
+.create-room-container .create-room-container__form {
+  @apply flex flex-col items-center gap-8;
+  @apply mt-8;
+}

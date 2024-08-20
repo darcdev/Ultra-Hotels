@@ -1,0 +1,45 @@
+<p-card [style]="{ width: '260px' }" class="hotel-item">
+  <ng-template pTemplate="header" class="hotel-item-header">
+    <img
+      alt="Hotel Alto"
+      class="hotel-item-header__image"
+      src="/assets/img/hote-template.jpg" />
+  </ng-template>
+  <div class="hotel-item-body">
+    <p-tag
+      [severity]="hotel.isActive ? 'success' : 'secondary'"
+      [value]="hotel.isActive ? 'Activo' : 'Desactivado'" />
+    <h3 class="hotel-item-body__title-hotel">
+      {{ hotel?.name }}
+    </h3>
+    <p class="hotel-item-body__description-hotel text-body-sm">
+      {{ hotel?.description }}
+    </p>
+    <div class="mt-2 flex flex-col">
+      <span class="text-caption-lg">
+        <app-icon name="matBedRound" size="1.5rem" class="mr-2"></app-icon>
+        10 habitaciones
+      </span>
+      <span class="text-caption-lg">
+        <app-icon
+          name="matPeopleOutlineRound"
+          size="1.5rem"
+          class="mr-2"></app-icon>
+        3 reservaciones
+      </span>
+    </div>
+  </div>
+  <ng-template pTemplate="footer" class="hotel-item-footer">
+    <div class="hotel-item-footer__settings">
+      <div>
+        <p class="text-caption-lg">
+          <span class="text-primary-500">
+            <app-icon name="matLocationOnRound" size="1.5rem"></app-icon>
+          </span>
+          Bogota, Bogota
+        </p>
+      </div>
+      <app-hotel-configuration [hotel]="hotel"></app-hotel-configuration>
+    </div>
+  </ng-template>
+</p-card>

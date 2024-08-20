@@ -1,0 +1,102 @@
+<div class="edit-hotel-container">
+  @if (loadingDataToEdit === StatusProcessAction.LOADING) {
+    <p>Loading...</p>
+  } @else if (loadingDataToEdit === StatusProcessAction.ERROR) {
+    <p>Ha ocurrido un error</p>
+  } @else {
+    <form class="edit-hotel-container__form">
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="name"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="editHotelForm.controls.name" />
+          <label for="name">Nombre del Hotel</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="editHotelForm.controls.name"
+          displayName="El nombre del hotel"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <textarea
+            id="description"
+            pInputTextarea
+            class="w-full"
+            [formControl]="editHotelForm.controls.description"></textarea>
+          <label for="description">Descripción</label>
+        </p-floatLabel>
+      </div>
+
+      <div class="w-full flex gap-4">
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="address_country"
+              type="text"
+              pInputText
+              class="w-full"
+              [formControl]="editHotelForm.controls.address.controls.country" />
+            <label for="address_country">País</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="editHotelForm.controls.address.controls.country"
+            displayName="El país"></app-errors-form-messages>
+        </div>
+
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="address_city"
+              type="text"
+              pInputText
+              class="w-full"
+              [formControl]="editHotelForm.controls.address.controls.city" />
+            <label for="address_city">Ciudad/Provincia</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="editHotelForm.controls.address.controls.city"
+            displayName="La ciudad"></app-errors-form-messages>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="additional_address_info"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="
+              editHotelForm.controls.address.controls.additionalInfo
+            " />
+          <label for="additional_address_info">Dirección</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="editHotelForm.controls.address.controls.additionalInfo"
+          displayName="La ciudad"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full flex items-start">
+        <p-inputSwitch
+          [formControl]="editHotelForm.controls.isActive"
+          inputId="isActiveHotel" />
+        <label for="isActiveHotel" class="ml-2 hover:cursor-pointer">{{
+          editHotelForm.controls.isActive.value
+            ? 'Hotel Activado'
+            : 'Hotel Desactivado'
+        }}</label>
+      </div>
+
+      <app-button
+        text="Editar Hotel"
+        classStyles="font-bold"
+        size="small"
+        type="submit"
+        (click)="editHotel()"></app-button>
+    </form>
+  }
+</div>

@@ -7,11 +7,11 @@ import {
 } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
-import { LoginUserForm } from '@/app/presenter/models/auth-users.model';
+import { LoginUserForm } from '@/app/presenter/models/form/auth-users.model';
 import { ButtonComponent } from '@/app/presenter/views/shared/components/design-system/atoms/button/button.component';
 import { Button } from 'primeng/button';
 import { ErrorsFormMessagesComponent } from '@/app/presenter/views/shared/components/common/organisms/errors-form-messages/errors-form-messages.component';
-import { RegisterUserRequestDTO } from '@/app/core/models/dto/auth';
+import { RegisterUserRequestDTO } from '@/app/core/models/dtos/auth';
 import { ActorRoles } from '@/app/core/constants/ActorRoles';
 import { SimpleUserLoginUseCaseService } from '@/app/domain/usecases/user/simple-user-login-use-case-service';
 import { MessageModule } from 'primeng/message';

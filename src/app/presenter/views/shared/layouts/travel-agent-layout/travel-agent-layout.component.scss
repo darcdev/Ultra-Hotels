@@ -6,7 +6,7 @@
 }
 
 .travel-agent-layout .travel-agent-workspace {
-  @apply flex flex-col items-center justify-center;
+  @apply flex flex-col;
   @apply bg-white;
   @apply rounded-lg;
   max-width: 80rem;

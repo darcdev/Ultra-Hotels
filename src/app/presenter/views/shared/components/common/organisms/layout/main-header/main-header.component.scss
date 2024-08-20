@@ -6,6 +6,7 @@
   @apply bg-white;
   @apply shadow-md;
   @apply py-xs;
+  @apply sticky;
 }
 
 .main-header {
@@ -13,6 +14,7 @@
   width: 100%;
   max-width: 80rem;
   height: var(--main-header-height);
+  @apply sticky;
 }
 
 .main-header .main-brand {

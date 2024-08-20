@@ -3,7 +3,7 @@ import { SupabaseService } from '@/app/core/services/supabase/supabase.service';
 import {
   LoginUserRequestDTO,
   RegisterUserRequestDTO,
-} from '@/app/core/models/dto/auth';
+} from '@/app/core/models/dtos/auth';
 import { AuthResponse, OAuthResponse } from '@supabase/supabase-js';
 import { AuthUserAdapter } from '@/app/domain/interfaces/auth-user-adapter';
 import { LogOutRequest, OAuthInfoRequest } from '@/app/core/models/auth';
@@ -25,7 +25,6 @@ export class AuthenticationService extends AuthUserAdapter {
   }
 
   register(registerUserDto: RegisterUserRequestDTO): Promise<AuthResponse> {
-    console.log(registerUserDto);
     return this.supabaseService.supabase.auth.signUp({
       email: registerUserDto.email,
       password: registerUserDto.password,

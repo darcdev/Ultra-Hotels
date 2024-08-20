@@ -12,7 +12,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { GoogleAuthButtonComponent } from '@/app/presenter/views/shared/components/common/atoms/google-auth-button/google-auth-button.component';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { RegisterTravellerForm } from '@/app/presenter/models/auth-users.model';
+import { RegisterTravellerForm } from '@/app/presenter/models/form/auth-users.model';
 import { IconComponent } from '@/app/presenter/views/shared/components/design-system/atoms/icon/icon.component';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TravelAgenterAuthenticationFormComponent } from '@/app/presenter/views/shared/components/common/organisms/auth/travel-agenter-authentication-form/travel-agenter-authentication-form.component';
@@ -22,7 +22,7 @@ import { AuthenticationFormModalComponent } from '@/app/presenter/views/shared/c
 import { AuthenticateUserOAuthService } from '@/app/domain/usecases/user/authenticate-user-oauth.service';
 import { OauthProviders } from '@/app/core/constants/OauthProviders';
 import { CreateSimpleAccountUserUseCaseService } from '@/app/domain/usecases/user/create-simple-account-user-use-case.service';
-import { RegisterUserRequestDTO } from '@/app/core/models/dto/auth';
+import { RegisterUserRequestDTO } from '@/app/core/models/dtos/auth';
 import { ActorRoles } from '@/app/core/constants/ActorRoles';
 import { ErrorsFormMessagesComponent } from '@/app/presenter/views/shared/components/common/organisms/errors-form-messages/errors-form-messages.component';
 import { matchPasswords } from '@/app/presenter/views/shared/validators/matchPasswords';
@@ -114,7 +114,7 @@ export class TravellerRegisterFormComponent {
         });
       }
     } catch (error) {
-      console.log('Ha ocurrido un error al registrar el usuario', error);
+      console.error('Ha ocurrido un error al registrar el usuario', error);
     }
   }
 

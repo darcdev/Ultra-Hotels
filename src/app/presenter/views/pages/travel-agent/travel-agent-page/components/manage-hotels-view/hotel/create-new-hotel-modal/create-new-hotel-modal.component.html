@@ -1,0 +1,85 @@
+<div class="create-hote-container">
+  <form class="create-hote-container__form">
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <input
+          id="name"
+          type="text"
+          pInputText
+          class="w-full"
+          [formControl]="createHotelForm.controls.name" />
+        <label for="name">Nombre del Hotel</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createHotelForm.controls.name"
+        displayName="El nombre del hotel"></app-errors-form-messages>
+    </div>
+
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <textarea
+          id="description"
+          pInputTextarea
+          class="w-full"
+          [formControl]="createHotelForm.controls.description"></textarea>
+        <label for="description">Descripción</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="w-full flex gap-4">
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="address_country"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="createHotelForm.controls.address.controls.country" />
+          <label for="address_country">País</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createHotelForm.controls.address.controls.country"
+          displayName="El país"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="address_city"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="createHotelForm.controls.address.controls.city" />
+          <label for="address_city">Ciudad/Provincia</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createHotelForm.controls.address.controls.city"
+          displayName="La ciudad"></app-errors-form-messages>
+      </div>
+    </div>
+
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <input
+          id="additional_address_info"
+          type="text"
+          pInputText
+          class="w-full"
+          [formControl]="
+            createHotelForm.controls.address.controls.additionalInfo
+          " />
+        <label for="additional_address_info">Dirección</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createHotelForm.controls.address.controls.additionalInfo"
+        displayName="La ciudad"></app-errors-form-messages>
+    </div>
+
+    <app-button
+      text="Crear Nuevo Hotel"
+      classStyles="font-bold"
+      size="small"
+      type="submit"
+      (click)="createHotel()"></app-button>
+  </form>
+</div>

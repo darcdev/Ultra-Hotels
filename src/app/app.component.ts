@@ -5,6 +5,7 @@ import { provideIcons } from '@ng-icons/core';
 import { materialUIIcons } from '@/app/presenter/icons/providerIcons';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,6 @@ import { MessageService } from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   viewProviders: [provideIcons({ ...materialUIIcons })],
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
 })
 export class AppComponent {}
