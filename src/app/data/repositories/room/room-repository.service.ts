@@ -88,7 +88,6 @@ export class RoomRepositoryService extends IRoomRepository {
       .single<RoomDto>();
 
     if (!data || error) {
-      console.log(error);
       throw new RoomOperationError(
         'getById',
         `Error obteniendo la habitación con ID: ${roomId}`,

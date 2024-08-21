@@ -1,0 +1,19 @@
+.traveller-homepage {
+  @apply flex flex-wrap;
+  @apply bg-white;
+  @apply min-h-[100vh];
+}
+
+.filter-hotels-section {
+  flex: 5;
+}
+
+.map-section-container {
+  flex: 3;
+}
+
+@media screen and (max-width: 768px) {
+  .traveller-homepage {
+    @apply flex flex-col;
+  }
+}

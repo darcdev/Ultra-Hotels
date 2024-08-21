@@ -1,0 +1,10 @@
+.section-map__map {
+  @apply w-full;
+  @apply h-full;
+}
+
+@media screen and (max-width: 768px) {
+  .section-map__map {
+    @apply hidden;
+  }
+}

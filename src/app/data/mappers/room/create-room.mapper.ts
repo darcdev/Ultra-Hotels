@@ -8,7 +8,6 @@ import { RoomDto } from '@/app/data/dtos/room.dto';
 })
 export class CreateRoomMapper implements Mapper<RoomEntity, RoomDto> {
   mapFrom(param: RoomEntity): RoomDto {
-    console.log(param.hotel);
     return {
       capacity: param.capacity,
       room_number: param.roomNumber,

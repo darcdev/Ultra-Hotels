@@ -1,0 +1,11 @@
+.traveller-layout {
+  @apply flex flex-col;
+}
+
+.main-footer-container {
+  @apply block;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  @apply mt-3;
+}

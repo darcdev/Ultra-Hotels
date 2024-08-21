@@ -8,7 +8,6 @@ import { RoomDto } from '@/app/data/dtos/room.dto';
 })
 export class UpdateRoomMapper implements Mapper<RoomEntity, RoomDto> {
   mapFrom(param: RoomEntity): RoomDto {
-    console.log(param);
     return {
       id: param.id,
       capacity: param.capacity,

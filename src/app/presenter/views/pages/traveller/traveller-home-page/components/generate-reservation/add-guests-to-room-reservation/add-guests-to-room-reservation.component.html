@@ -1,0 +1,200 @@
+<div class="complete-reservation">
+  <div class="complete-reservation__contact-data">
+    <form [formGroup]="reservationForm" class="create-reservation__form">
+      <div class="contact_emergency">
+        <!-- Emergency Contact Name -->
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="name_emergency"
+              type="text"
+              pInputText
+              class="w-full"
+              [formControl]="reservationForm.controls.emergencyContactName" />
+            <label for="name_emergency"
+              >Nombre completo contacto de emergencia</label
+            >
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="reservationForm.controls.emergencyContactName"
+            displayName="El nombre del contacto de emergencia"></app-errors-form-messages>
+        </div>
+
+        <!-- Emergency Contact Phone -->
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="phone_emergency"
+              type="text"
+              pInputText
+              class="w-full"
+              [formControl]="reservationForm.controls.emergencyContactPhone" />
+            <label for="phone_emergency">Teléfono de emergencia</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="reservationForm.controls.emergencyContactPhone"
+            displayName="El teléfono del contacto de emergencia"></app-errors-form-messages>
+        </div>
+      </div>
+
+      <hr class="mt-5" />
+
+      <div formArrayName="guests">
+        <div
+          *ngFor="let guest of guests.controls; let i = index"
+          [formGroupName]="i"
+          [id]="'guest_' + i"
+          class="passenger-group flex flex-col gap-y-8 mt-5">
+          <div class="flex justify-between">
+            <h2 class="my-2 font-bold">Huesped {{ i + 1 }}</h2>
+            <button class="text-error" (click)="removeGuest(i)">
+              <app-icon name="matDeleteRound"></app-icon>
+            </button>
+          </div>
+          <div class="flex flex-col gap-8">
+            <!-- Full Name -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <input
+                  id="name_{{ i }}"
+                  type="text"
+                  pInputText
+                  class="w-full"
+                  [formControl]="guest.controls.fullName" />
+                <label for="name_{{ i }}">Full Name</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.fullName"
+                displayName="Nombre completo"></app-errors-form-messages>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <p-calendar
+                  id="birthdate_{{ i }}"
+                  styleClass="w-full"
+                  class="w-full"
+                  [formControl]="guest.controls.birthDate" />
+
+                <label for="birthdate_{{ i }}">Date of Birth</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.birthDate"
+                displayName="Fecha de nacimiento"></app-errors-form-messages>
+            </div>
+
+            <!-- Gender -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <input
+                  id="gender_{{ i }}"
+                  type="text"
+                  pInputText
+                  class="w-full"
+                  [formControl]="guest.controls.gender" />
+                <label for="gender_{{ i }}">Gender</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.gender"
+                displayName="Genero"></app-errors-form-messages>
+            </div>
+
+            <!-- Document Type -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <input
+                  id="documentType_{{ i }}"
+                  type="text"
+                  pInputText
+                  class="w-full"
+                  [formControl]="guest.controls.documentType" />
+                <label for="documentType_{{ i }}">Document Type</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.documentType"
+                displayName="Tipo de documento"></app-errors-form-messages>
+            </div>
+
+            <!-- Document Number -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <input
+                  id="documentNumber_{{ i }}"
+                  type="text"
+                  pInputText
+                  class="w-full"
+                  [formControl]="guest.controls.documentNumber" />
+                <label for="documentNumber_{{ i }}">Document Number</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.documentNumber"
+                displayName="Número de documento"></app-errors-form-messages>
+            </div>
+
+            <!-- Email -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <input
+                  id="email_{{ i }}"
+                  type="email"
+                  pInputText
+                  class="w-full"
+                  [formControl]="guest.controls.email" />
+                <label for="email_{{ i }}">Email</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.email"
+                displayName="Correo"></app-errors-form-messages>
+            </div>
+
+            <!-- Contact Phone -->
+            <div class="w-full">
+              <p-floatLabel class="w-full">
+                <input
+                  id="phone_{{ i }}"
+                  type="text"
+                  pInputText
+                  class="w-full"
+                  [formControl]="guest.controls.phoneNumber" />
+                <label for="phone_{{ i }}">Contact Phone</label>
+              </p-floatLabel>
+              <app-errors-form-messages
+                [control]="guest.controls.phoneNumber"
+                displayName="Teléfono de contacto"></app-errors-form-messages>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Guest Button -->
+        @if (actualRoom!.capacity > guests.length) {
+          <div class="mt-2">
+            <app-button
+              pButton
+              text="Agregar huésped"
+              size="small"
+              type="button"
+              (click)="addGuest()">
+              <app-icon name="matAddCircleRound" class="mr-2"></app-icon>
+            </app-button>
+          </div>
+        }
+      </div>
+      <div class="mt-5 flex justify-center">
+        <app-button
+          pButton
+          text="Realizar reserva"
+          type="button"
+          (click)="submitReservation()">
+        </app-button>
+      </div>
+    </form>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancel"
+      [text]="true"
+      severity="secondary"
+      (onClick)="submitReservation()" />
+  </ng-template>
+</div>

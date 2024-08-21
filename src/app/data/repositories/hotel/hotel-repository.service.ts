@@ -9,6 +9,9 @@ import { HotelDto } from '@/app/data/dtos/hotel.dto';
 import { GetAllHotelsByAgentMapper } from '@/app/data/mappers/hotel/get-all-hotels-by-agent.mapper';
 import { GetHotelMapper } from '@/app/data/mappers/hotel/get-hotel.mapper';
 import { UpdateHotelRequest } from '@/app/core/models/hotel';
+import { HotelFilterModel } from '@/app/presenter/models/form/hotel-filter.model';
+import { SearchFilterHotelMapper } from '@/app/data/mappers/hotel/search-filter-hotel.mapper';
+import { GetHotelsByFilterMapper } from '@/app/data/mappers/hotel/getHotelsByFilter.mapper';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,9 @@ export class HotelRepositoryService extends IHotelRepository {
     private createHotelMapper: CreateHotelMapper,
     private updateHotelMapper: UpdateHotelMapper,
     private getHotelMapper: GetHotelMapper,
-    private getAllHotelsByAgentMapper: GetAllHotelsByAgentMapper
+    private getAllHotelsByAgentMapper: GetAllHotelsByAgentMapper,
+    private getAllHotelByFilterMapper: GetHotelsByFilterMapper,
+    private searchFilterHotelMapper: SearchFilterHotelMapper
   ) {
     super();
   }
@@ -114,5 +119,70 @@ export class HotelRepositoryService extends IHotelRepository {
     }
 
     return data.map(this.getAllHotelsByAgentMapper.mapTo);
+  }
+
+  async getHotelsByFilter(filter: HotelFilterModel): Promise<HotelEntity[]> {
+    const filterDto = this.searchFilterHotelMapper.mapToDto(filter);
+
+    /** Get booking rooms in the date range**/
+    let bookedRoomsQuery = this.supabaseService.supabase
+      .from('bookings')
+      .select('room_id');
+
+    if (filterDto.date_arrive && filterDto.date_checkout) {
+      bookedRoomsQuery = bookedRoomsQuery
+        .gte('date_arrive', filterDto.date_arrive)
+        .lte('date_checkout', filterDto.date_checkout);
+    }
+
+    const bookedRooms = await bookedRoomsQuery;
+
+    /** 1. Filter hotels by city and rooms capacity
+     *  2. Remove rooms with booking id in the date range
+     *  3. Remove hotels with no rooms
+     * **/
+
+    let query = this.supabaseService.supabase
+      .from('hotels')
+      .select(
+        `
+    *,
+    rooms:rooms(
+      *
+    )
+  `
+      )
+      .eq('isActive', true)
+      .eq('rooms.is_available', true)
+      .gte('rooms.capacity', filterDto.num_guests);
+
+    if (filterDto.city) {
+      query = query.eq('city', filterDto.city);
+    }
+
+    query
+      .not(
+        'rooms.id',
+        'in',
+        `(${((bookedRooms?.data as unknown as { room_id: string }[]) ?? [])
+          .map((room: { room_id: string }) => room.room_id)
+          .join(',')})`
+      )
+      .not('rooms', 'is', null);
+
+    const { data, error } = await query;
+
+    if (error) {
+      throw new HotelOperationError(
+        'getAllHotelsByFilter',
+        'Error obteniendo lista hoteles por filtro',
+        error
+      );
+    }
+    const hotelDataDto = (data || []) as HotelDto[];
+
+    return hotelDataDto.map(hotelDataDto =>
+      this.getAllHotelByFilterMapper.mapTo(hotelDataDto)
+    );
   }
 }

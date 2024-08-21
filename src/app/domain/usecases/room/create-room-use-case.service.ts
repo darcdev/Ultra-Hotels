@@ -12,7 +12,6 @@ export class CreateRoomUseCaseService
   constructor(private _roomRepository: IRoomRepository) {}
 
   execute(roomData: RoomEntity): Promise<RoomEntity> {
-    console.log(roomData);
     return this._roomRepository.createRoom(roomData);
   }
 }

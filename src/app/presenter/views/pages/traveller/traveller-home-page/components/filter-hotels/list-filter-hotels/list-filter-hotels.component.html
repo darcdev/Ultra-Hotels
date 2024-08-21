@@ -1,0 +1,7 @@
+<section class="list-hotels">
+  @for (hotel of listOfHotelsFilter; track hotel.id) {
+    <app-list-filter-item [hotel]="hotel"></app-list-filter-item>
+  } @empty {
+    <p>No existen hoteles...</p>
+  }
+</section>

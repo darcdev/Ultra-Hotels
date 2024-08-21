@@ -13,6 +13,7 @@ import { NgxsModule } from '@ngxs/store';
 import { environment } from '@/environments/environment.development';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { stateProviders } from '@/app/presenter/state';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,5 +34,6 @@ export const appConfig: ApplicationConfig = {
         disabled: environment.production,
       })
     ),
+    LeafletModule,
   ],
 };

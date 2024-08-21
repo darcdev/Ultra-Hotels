@@ -1,0 +1,117 @@
+<div class="edit-room-container">
+  @if (loadingDataRoomToEdit === StatusProcessAction.LOADING) {
+    <p>Loading...</p>
+  } @else if (loadingDataRoomToEdit === StatusProcessAction.ERROR) {
+    <p>Ha ocurrido un error</p>
+  } @else {
+    <form class="edit-room-container__form" (ngSubmit)="editRoom()">
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <p-dropdown
+            [formControl]="editRoomForm.controls.type"
+            pAutoFocus
+            [options]="roomHotelTypesList"
+            id="typeRoom"
+            styleClass="w-full"
+            optionLabel="value"
+            placeholder="Select a City" />
+          <label for="typeRoom">Tipo de Habitación</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="editRoomForm.controls.type"
+          displayName="El tipo de habitación"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full flex gap-4">
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="basePrice"
+              type="number"
+              pInputText
+              class="w-full"
+              [formControl]="editRoomForm.controls.basePrice" />
+            <label for="basePrice">Precio Base</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="editRoomForm.controls.basePrice"
+            displayName="El precio base"></app-errors-form-messages>
+        </div>
+
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
+              id="taxes"
+              type="number"
+              pInputText
+              class="w-full"
+              [formControl]="editRoomForm.controls.taxes" />
+            <label for="taxes">Impuestos</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="editRoomForm.controls.taxes"
+            displayName="Los impuestos"></app-errors-form-messages>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="roomNumber"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="editRoomForm.controls.roomNumber" />
+          <label for="roomNumber">Número de Habitación</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="editRoomForm.controls.roomNumber"
+          displayName="El número de habitación"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="capacity"
+            type="number"
+            pInputText
+            class="w-full"
+            [formControl]="editRoomForm.controls.capacity" />
+          <label for="capacity">Capacidad de personas</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="editRoomForm.controls.capacity"
+          displayName="La capacidad"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <textarea
+            id="description"
+            pInputTextarea
+            class="w-full"
+            [formControl]="editRoomForm.controls.description"></textarea>
+          <label for="description">Descripción</label>
+        </p-floatLabel>
+      </div>
+
+      <div class="w-full flex items-start">
+        <p-inputSwitch
+          [formControl]="editRoomForm.controls.isAvailable"
+          inputId="isActiveRoom" />
+        <label for="isActiveRoom" class="ml-2 hover:cursor-pointer">{{
+          editRoomForm.controls.isAvailable.value
+            ? 'Habitación habilitada'
+            : 'Habitación deshabilitada'
+        }}</label>
+      </div>
+
+      <app-button
+        text="Editar Habitación"
+        classStyles="font-bold"
+        size="small"
+        type="submit">
+      </app-button>
+    </form>
+  }
+</div>
