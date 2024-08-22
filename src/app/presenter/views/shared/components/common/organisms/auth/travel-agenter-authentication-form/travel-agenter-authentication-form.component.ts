@@ -15,7 +15,7 @@ import { LoginUserRequestDTO } from '@/app/core/models/dtos/auth';
 import { SimpleUserLoginUseCaseService } from '@/app/domain/usecases/user/simple-user-login-use-case-service';
 import { MessageModule } from 'primeng/message';
 import { Router } from '@angular/router';
-import { IAuthUserSession } from '@/app/core/interfaces/Iauth-user-session';
+import { IAuthUserSession } from '@/app/core/interfaces/auth/Iauth-user-session';
 import { UserProfileResponse } from '@/app/core/models/auth';
 
 @Component({

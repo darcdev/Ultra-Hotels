@@ -1,5 +1,5 @@
 {
-  "name": "ultra-hotels",
+  "name": "ultra-Rooms",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -77,7 +77,7 @@
   },
   "overrides": {
     "@supabase/supabase-js": {
-      "@supabase/gotrue-js": "2.61.0"
+      "@supabase/auth-js": "2.61.0"
     }
   }
 }

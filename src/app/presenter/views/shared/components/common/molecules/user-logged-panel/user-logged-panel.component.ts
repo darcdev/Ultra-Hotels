@@ -7,7 +7,7 @@ import { Button } from 'primeng/button';
 import { ButtonComponent } from '@/app/presenter/views/shared/components/design-system/atoms/button/button.component';
 import { IconComponent } from '@/app/presenter/views/shared/components/design-system/atoms/icon/icon.component';
 import { LogOutUserCaseService } from '@/app/domain/usecases/user/log-out-user-case.service';
-import { IAuthUserSession } from '@/app/core/interfaces/Iauth-user-session';
+import { IAuthUserSession } from '@/app/core/interfaces/auth/Iauth-user-session';
 import { UserProfileResponse } from '@/app/core/models/auth';
 import { Router } from '@angular/router';
 

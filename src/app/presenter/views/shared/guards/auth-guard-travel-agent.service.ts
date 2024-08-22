@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IAuthUserSession } from '@/app/core/interfaces/Iauth-user-session';
+import { IAuthUserSession } from '@/app/core/interfaces/auth/Iauth-user-session';
 import { ActorRoles } from '@/app/core/constants/ActorRoles';
 
 @Injectable({
@@ -25,8 +25,9 @@ export class AuthGuardTravelAgent implements CanActivate {
     const requiredRole = ActorRoles.TRAVEL_AGENT;
     try {
       const user = await this.authSessionService.getUser();
-      await this.router.navigate(['']);
+      console.log(user);
       if (!user || user.profile.role !== requiredRole) {
+        await this.router.navigate(['']);
         return false;
       }
     } catch {

@@ -1,6 +1,6 @@
 import { Provider } from '@angular/core';
 
-import { IInjectionFactory } from '@/app/core/interfaces/iinjection-factory';
+import { IInjectionFactory } from '@/app/core/interfaces/factories/iinjection-factory';
 import { IBookingRepository } from '@/app/domain/interfaces/ibooking.repository';
 import { BookingRepositoryService } from '@/app/data/repositories/booking/booking-repository.service';
 

@@ -5,4 +5,5 @@ export abstract class IBookingRepository {
   abstract getDetailedBookingInfoByAgent(
     agentId: string
   ): Promise<BookingEntity[]>;
+  abstract getDetailBookingInfo(agentId: string): Promise<BookingEntity>;
 }

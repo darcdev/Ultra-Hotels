@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SupabaseService } from '@/app/core/services/supabase/supabase.service';
-import { IAuthUserSession } from '@/app/core/interfaces/Iauth-user-session';
+import { IAuthUserSession } from '@/app/core/interfaces/auth/Iauth-user-session';
 import {
   AuthSessionResponse,
   UserProfileResponse,

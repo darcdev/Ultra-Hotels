@@ -5,4 +5,5 @@ export const environment = {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhcXFyc3VoeGZycHJpb3RzaGN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjM5NTE2MTYsImV4cCI6MjAzOTUyNzYxNn0.GJ6OIoRO4UiHi3aZs4Cd49FqYVG3KRRphAwaa2GiN8k',
   redirectOAuthUrl: 'oauth/callback',
   production: false,
+  apiEmailSender: 'http://localhost:3000/send-email-reservation',
 };

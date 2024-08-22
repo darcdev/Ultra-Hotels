@@ -94,4 +94,63 @@ export class BookingRepositoryService extends IBookingRepository {
       },
     })) as unknown as BookingEntity[];
   }
+
+  async getDetailBookingInfo(agentId: string): Promise<BookingEntity[]> {
+    const { data, error } = await this.supabaseService.supabase
+      .from(this.nameTable)
+      .select(
+        `
+      *,
+      rooms:rooms(
+        *,
+        hotels:hotels(
+          *
+        )
+      ),
+      guests:guests(*)
+    `
+      )
+      .eq('rooms.hotels.agencyId', agentId);
+
+    if (!data || error) {
+      throw new BookingOperationError(
+        'get detail bookings by agent',
+        'Error getting the booking by specific agent',
+        error
+      );
+    }
+
+    /** Map the complex booking data to the BookingEntity */
+    const dataBooking = data as unknown as BookingDto[];
+
+    const finalReservations = dataBooking
+      .map(booking => {
+        const room = booking.rooms as RoomDto;
+        const hotel = room.hotels as HotelDto;
+
+        if (hotel.agencyId === agentId) {
+          return {
+            ...booking,
+            guests: booking.guests,
+            rooms: {
+              ...room,
+              hotels: hotel,
+            },
+          };
+        }
+        return null;
+      })
+      .filter(booking => booking !== null);
+
+    return finalReservations.map(booking => ({
+      ...this.createBookingMapper.mapTo(booking),
+      guests: booking.guests?.map(this.listGuestsBookingMapper.mapTo),
+      rooms: {
+        ...this.getRoomHotelMapper.mapTo(booking.rooms as RoomDto),
+        hotels: this.getHotelMapper.mapTo(
+          (booking.rooms as RoomDto).hotels as HotelDto
+        ),
+      },
+    })) as BookingEntity[];
+  }
 }

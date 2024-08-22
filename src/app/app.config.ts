@@ -14,11 +14,13 @@ import { environment } from '@/environments/environment.development';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { stateProviders } from '@/app/presenter/state';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideHttpClient(),
     provideNgIconsConfig({
       size: '2rem',
     }),
