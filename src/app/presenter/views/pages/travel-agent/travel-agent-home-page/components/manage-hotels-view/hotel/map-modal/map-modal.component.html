@@ -1,0 +1,11 @@
+<div class="leaflet-container">
+  <div
+    leaflet
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady($event)"></div>
+</div>
+<div class="p-dialog-footer mt-5 flex justify-end">
+  <app-button
+    text="Seleccionar ubicación"
+    (click)="selectMapLocation()"></app-button>
+</div>

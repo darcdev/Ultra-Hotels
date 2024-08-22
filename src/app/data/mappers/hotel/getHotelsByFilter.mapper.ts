@@ -18,6 +18,8 @@ export class GetHotelsByFilterMapper implements Mapper<HotelEntity, HotelDto> {
       country: param.country,
       description: param.description,
       additional_info_address: param.additionalAdressInfo,
+      latitude: param?.latitude,
+      longitude: param?.longitude,
       isActive: param.isActive,
     };
   }
@@ -30,6 +32,8 @@ export class GetHotelsByFilterMapper implements Mapper<HotelEntity, HotelDto> {
       description: param.description,
       additionalAdressInfo: param.additional_info_address,
       isActive: param.isActive,
+      latitude: param?.latitude,
+      longitude: param?.longitude,
       rooms: param.rooms
         ? param.rooms.map(roomDto => this.getAllRoomHotelMapper.mapTo(roomDto))
         : [],

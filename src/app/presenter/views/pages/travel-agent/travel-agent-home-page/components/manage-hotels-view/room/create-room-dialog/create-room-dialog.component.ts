@@ -20,6 +20,8 @@ import { RoomOperationError } from '@/app/core/validations/rooms/room-operation.
 import { AutoFocus } from 'primeng/autofocus';
 import { roomHotelTypes } from '@/app/presenter/views/shared/constants/room';
 import { HotelEntity } from '@/app/domain/entities/hotel.entity';
+import { Store } from '@ngxs/store';
+import { AddRoom } from '@/app/presenter/state/rooms/actions';
 
 interface CreateRoomModalDynamicDialogConfigData {
   hotel: HotelEntity;
@@ -51,7 +53,8 @@ export class CreateRoomDialogComponent {
     private createRoomUseCaseService: CreateRoomUseCaseService,
     private dialogConfigService: DynamicDialogConfig<CreateRoomModalDynamicDialogConfigData>,
     private messageService: MessageService,
-    private dialogRef: DynamicDialogRef
+    private dialogRef: DynamicDialogRef,
+    private store: Store
   ) {
     this.createRoomForm = this.fb.group<CreateRoomForm>({
       type: this.fb.control('', {
@@ -85,7 +88,7 @@ export class CreateRoomDialogComponent {
     }
 
     try {
-      await this.createRoomUseCaseService.execute({
+      const newRoom = await this.createRoomUseCaseService.execute({
         type: (
           this.createRoomForm.value.type as unknown as {
             id: string;
@@ -99,6 +102,8 @@ export class CreateRoomDialogComponent {
         description: this.createRoomForm.value.description ?? '',
         hotel: this.dialogConfigService.data?.hotel.id,
       });
+
+      this.store.dispatch(new AddRoom(newRoom));
 
       this.messageService.add({
         severity: 'success',

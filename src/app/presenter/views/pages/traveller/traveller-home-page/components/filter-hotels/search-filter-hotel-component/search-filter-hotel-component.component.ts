@@ -35,6 +35,8 @@ import { convertEuropeFormatDateToISO8601 } from '@/app/presenter/views/shared/h
 export class SearchFilterHotelComponentComponent implements OnInit {
   searchHotelsForm: FormGroup<HotelFilterForm>;
 
+  minDateCalendar = new Date();
+
   constructor(private store: Store) {
     this.searchHotelsForm = new FormGroup<HotelFilterForm>({
       city: new FormControl(null, []),

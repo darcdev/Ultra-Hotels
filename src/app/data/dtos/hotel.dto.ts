@@ -10,6 +10,8 @@ export interface HotelDto {
   agencyId?: string;
   isActive?: boolean;
   rooms?: RoomDto[];
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface SearchFilterDto {

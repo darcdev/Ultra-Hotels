@@ -24,6 +24,10 @@ import { GetHotelByIdUseCaseService } from '@/app/domain/usecases/hotel/get-hote
 import { HotelEntity } from '@/app/domain/entities/hotel.entity';
 import { StatusProcessAction } from '@/app/presenter/models/state/statusProcessAction';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { EditHotel } from '@/app/presenter/state/hotels/actions';
+import { Store } from '@ngxs/store';
+import { cities } from '@/app/presenter/views/shared/constants/cities';
+import { countries } from '@/app/presenter/views/shared/constants/countries';
 
 interface EditHotelModalDynamicDialogConfigData {
   id: string;
@@ -58,7 +62,8 @@ export class EditHotelModalComponent implements OnInit {
     private messageService: MessageService,
     private dialogRef: DynamicDialogRef,
     private getHotelUseCaseService: GetHotelByIdUseCaseService,
-    private dynamicDialogConfig: DynamicDialogConfig<EditHotelModalDynamicDialogConfigData>
+    private dynamicDialogConfig: DynamicDialogConfig<EditHotelModalDynamicDialogConfigData>,
+    private store: Store
   ) {
     this.editHotelForm = this.fb.group<EditHotelForm>({
       name: this.fb.control('', {
@@ -77,6 +82,7 @@ export class EditHotelModalComponent implements OnInit {
         }),
         additionalInfo: this.fb.control(''),
       }),
+
       isActive: this.fb.control(false),
     });
   }
@@ -116,7 +122,7 @@ export class EditHotelModalComponent implements OnInit {
     }
 
     try {
-      await this.editHotelUseCaseService.execute({
+      const editedHotel = await this.editHotelUseCaseService.execute({
         hotelId: this.dynamicDialogConfig.data?.id ?? '',
         hotelData: {
           id: this.dynamicDialogConfig.data?.id ?? '',
@@ -137,6 +143,8 @@ export class EditHotelModalComponent implements OnInit {
         closable: true,
       });
 
+      this.store.dispatch(new EditHotel(editedHotel));
+
       this.dialogRef.close();
     } catch (error) {
       if (error instanceof HotelOperationError) {
@@ -146,4 +154,6 @@ export class EditHotelModalComponent implements OnInit {
   }
 
   protected readonly StatusProcessAction = StatusProcessAction;
+  protected readonly cities = cities;
+  protected readonly countries = countries;
 }

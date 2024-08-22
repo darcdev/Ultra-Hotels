@@ -6,12 +6,11 @@
 
 .room-to-reserve-item .room-to-reserve-item-body {
   @apply flex flex-col md:flex-nowrap gap-4;
-  @apply w-full;
 }
 
 .room-to-reserve-item-body .room-to-reserve-item__image {
   @apply w-full h-[200px];
-  @apply md:w-full md:h-full;
+  @apply md:max-w-full md:max-h-[350px];
   object-fit: cover;
 }
 

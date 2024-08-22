@@ -35,7 +35,7 @@ export class GenerateReservationComponent implements OnInit {
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
-        numVisible: 1,
+        numVisible: 2,
         numScroll: 1,
       },
       {
@@ -45,7 +45,7 @@ export class GenerateReservationComponent implements OnInit {
       },
       {
         breakpoint: '767px',
-        numVisible: 1,
+        numVisible: 2,
         numScroll: 1,
       },
     ];

@@ -6,6 +6,10 @@ import { SessionUserService } from '@/app/presenter/views/shared/services/sessio
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import { SidebarRoomsHotelComponent } from '@/app/presenter/views/pages/travel-agent/travel-agent-home-page/components/manage-hotels-view/room/sidebar-rooms-hotel/sidebar-rooms-hotel.component';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { HotelState } from '@/app/presenter/state/hotels';
+import { SetHotel } from '@/app/presenter/state/hotels/actions';
 
 @Component({
   selector: 'app-list-hotels',
@@ -21,13 +25,20 @@ import { SidebarRoomsHotelComponent } from '@/app/presenter/views/pages/travel-a
 })
 export class ListHotelsComponent implements OnInit {
   listOfHotelsByAgent: HotelEntity[] = [];
+  listOfHotelByAgent$: Observable<HotelEntity[]>;
 
   constructor(
     private userSessionService: SessionUserService,
-    private getAllHotelsByAgentUseCaseService: GetAllHotelsByAgentUseCaseService
-  ) {}
+    private getAllHotelsByAgentUseCaseService: GetAllHotelsByAgentUseCaseService,
+    private store: Store
+  ) {
+    this.listOfHotelByAgent$ = this.store.select(HotelState.getHotels);
+  }
 
   ngOnInit() {
+    this.listOfHotelByAgent$.subscribe(listHotels => {
+      this.listOfHotelsByAgent = listHotels;
+    });
     void this.loadAllHotelsByAgent();
   }
 
@@ -37,6 +48,7 @@ export class ListHotelsComponent implements OnInit {
         await this.getAllHotelsByAgentUseCaseService.execute(
           this.userSessionService.getUserSession()?.user.id ?? ''
         );
+      this.store.dispatch(new SetHotel(this.listOfHotelsByAgent));
     } catch (error) {
       console.error('error al traer la lista de hoteles', error);
     }

@@ -15,6 +15,7 @@
       clear="sss"
       [showButtonBar]="true"
       class="date-arrive"
+      [minDate]="minDateCalendar"
       placeholder="Fecha de llegada"
       [formControl]="searchHotelsForm.controls.dateArrive" />
   </div>
@@ -22,6 +23,7 @@
     <p-calendar
       [showButtonBar]="true"
       class="date-checkout"
+      [minDate]="minDateCalendar"
       placeholder="Fecha de partida"
       [formControl]="searchHotelsForm.controls.dateCheckout" />
   </div>

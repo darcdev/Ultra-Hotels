@@ -9,6 +9,10 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddGuestsToRoomReservationComponent } from '@/app/presenter/views/pages/traveller/traveller-home-page/components/generate-reservation/add-guests-to-room-reservation/add-guests-to-room-reservation.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { Store } from '@ngxs/store';
+import { HotelFilterModel } from '@/app/presenter/models/form/hotel-filter.model';
+import { Observable } from 'rxjs';
+import { SearchHotelsFilterState } from '@/app/presenter/state/searchHotelsFilter';
 
 @Component({
   selector: 'app-rooms-list-to-reverse',
@@ -32,10 +36,17 @@ export class RoomsListToReverseComponent {
 
   refAddGuestToRoomReservation: DynamicDialogRef | undefined;
 
+  actualSearchHotelsFilter!: Observable<HotelFilterModel | null>;
+
   constructor(
     public dialogService: DialogService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private store: Store
+  ) {
+    this.actualSearchHotelsFilter = this.store.select(
+      SearchHotelsFilterState.getActualSearchHotelFilter
+    );
+  }
 
   openAddGuestsToRoomReservationModal() {
     this.refAddGuestToRoomReservation = this.dialogService.open(
@@ -53,6 +64,11 @@ export class RoomsListToReverseComponent {
         if (data?.success) {
           this.dynamicGenerateReservationDialogRef.close({
             success: true,
+          });
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Eliminar Hotel',
+            detail: 'Se ha eliminado el hotel exitosamente',
           });
         } else {
           this.dynamicGenerateReservationDialogRef.close({});

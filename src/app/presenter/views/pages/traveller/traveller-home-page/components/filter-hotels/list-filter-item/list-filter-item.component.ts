@@ -65,7 +65,7 @@ export class ListFilterItemComponent implements OnInit {
       GenerateReservationComponent,
       {
         header: 'Habitaciónes disponibles para reservar',
-        width: '50rem',
+        width: '30rem',
         breakpoints: {
           '769px': '90%',
         },

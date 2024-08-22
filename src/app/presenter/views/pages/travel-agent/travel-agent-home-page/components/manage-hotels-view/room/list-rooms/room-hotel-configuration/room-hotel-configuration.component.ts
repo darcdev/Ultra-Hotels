@@ -8,6 +8,8 @@ import { RoomEntity } from '@/app/domain/entities/room.entity';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DeleteRoomUseCaseService } from '@/app/domain/usecases/room/delete-room-use-case.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Store } from '@ngxs/store';
+import { RemoveRoom } from '@/app/presenter/state/rooms/actions';
 
 @Component({
   selector: 'app-room-hotel-configuration',
@@ -25,7 +27,8 @@ export class RoomHotelConfigurationComponent {
     public dialogService: DialogService,
     private confirmationService: ConfirmationService,
     private deleteRoomUseCaseService: DeleteRoomUseCaseService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private store: Store
   ) {}
   refEditRoomModal: DynamicDialogRef | undefined;
 
@@ -50,6 +53,7 @@ export class RoomHotelConfigurationComponent {
         });
       },
     });
+    this.store.dispatch(new RemoveRoom(this.room?.id ?? ''));
   }
 
   openEditRoomModal() {

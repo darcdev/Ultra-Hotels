@@ -57,49 +57,6 @@ export class BookingRepositoryService extends IBookingRepository {
       .from(this.nameTable)
       .select(
         `
-        *,
-        rooms:rooms(
-          *,
-          hotels:hotels(
-            *
-          )
-        ),
-        guests:guests(*)
-      `
-      )
-      .eq('rooms.hotels.agencyId', agentId);
-
-    if (!data || error) {
-      throw new BookingOperationError(
-        'get detail bookings by agent',
-        'Error getting the booking by specific agent',
-        error
-      );
-    }
-
-    /** Map the complex booking data to the BookingEntity */
-    // TODO : Potencial improvement: Refactor this to a one mapper
-
-    const dataBooking = data as unknown as BookingDto[];
-    return dataBooking.map(booking => ({
-      ...this.createBookingMapper.mapTo(booking),
-      guests: booking.guests?.map(this.listGuestsBookingMapper.mapTo),
-      rooms: {
-        ...this.getRoomHotelMapper.mapTo(booking.rooms as RoomDto),
-        hotels: {
-          ...this.getHotelMapper.mapTo(
-            (booking.rooms as RoomDto).hotels as HotelDto
-          ),
-        },
-      },
-    })) as unknown as BookingEntity[];
-  }
-
-  async getDetailBookingInfo(agentId: string): Promise<BookingEntity[]> {
-    const { data, error } = await this.supabaseService.supabase
-      .from(this.nameTable)
-      .select(
-        `
       *,
       rooms:rooms(
         *,
@@ -130,27 +87,71 @@ export class BookingRepositoryService extends IBookingRepository {
 
         if (hotel.agencyId === agentId) {
           return {
-            ...booking,
-            guests: booking.guests,
+            ...this.createBookingMapper.mapTo(booking),
+            guests: booking.guests?.map(this.listGuestsBookingMapper.mapTo),
             rooms: {
-              ...room,
-              hotels: hotel,
+              ...this.getRoomHotelMapper.mapTo(room),
+              hotels: this.getHotelMapper.mapTo(hotel),
             },
           };
         }
         return null;
       })
-      .filter(booking => booking !== null);
+      .filter(booking => booking !== null) as BookingEntity[];
 
-    return finalReservations.map(booking => ({
-      ...this.createBookingMapper.mapTo(booking),
-      guests: booking.guests?.map(this.listGuestsBookingMapper.mapTo),
+    return finalReservations;
+  }
+
+  async getDetailBookingInfo(bookingId: string): Promise<BookingEntity> {
+    const { data, error } = await this.supabaseService.supabase
+      .from(this.nameTable)
+      .select(
+        `
+      *,
+      rooms:rooms(
+        *,
+        hotels:hotels(
+          *
+        )
+      ),
+      guests:guests(*)
+    `
+      )
+      .eq('id', bookingId)
+      .single<BookingDto>();
+
+    if (!data || error) {
+      throw new BookingOperationError(
+        'get detail booking by id',
+        'Error getting the booking by specific id',
+        error
+      );
+    }
+
+    /** Map the complex booking data to the BookingEntity */
+    const booking = data as unknown as BookingDto;
+
+    const room = booking.rooms as RoomDto;
+    const hotel = room.hotels as HotelDto;
+
+    const finalReservation = {
+      ...booking,
+      guests: booking.guests,
       rooms: {
-        ...this.getRoomHotelMapper.mapTo(booking.rooms as RoomDto),
+        ...room,
+        hotels: hotel,
+      },
+    };
+
+    return {
+      ...this.createBookingMapper.mapTo(finalReservation),
+      guests: finalReservation.guests?.map(this.listGuestsBookingMapper.mapTo),
+      rooms: {
+        ...this.getRoomHotelMapper.mapTo(finalReservation.rooms as RoomDto),
         hotels: this.getHotelMapper.mapTo(
-          (booking.rooms as RoomDto).hotels as HotelDto
+          (finalReservation.rooms as RoomDto).hotels as HotelDto
         ),
       },
-    })) as BookingEntity[];
+    };
   }
 }

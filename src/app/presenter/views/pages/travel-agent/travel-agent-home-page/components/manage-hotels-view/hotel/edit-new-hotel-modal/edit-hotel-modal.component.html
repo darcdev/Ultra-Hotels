@@ -34,27 +34,40 @@
       <div class="w-full flex gap-4">
         <div class="w-full">
           <p-floatLabel class="w-full">
-            <input
-              id="address_country"
-              type="text"
-              pInputText
-              class="w-full"
-              [formControl]="editHotelForm.controls.address.controls.country" />
-            <label for="address_country">País</label>
+            <p-dropdown
+              styleClass="w-full"
+              class="city-dropdown"
+              [options]="countries"
+              optionLabel="name"
+              optionValue="name"
+              [filter]="true"
+              filterBy="name"
+              appendTo="body"
+              [showClear]="true"
+              id="countries"
+              [formControl]="editHotelForm.controls.address.controls.country"
+              placeholder="País" />
+            <label for="countries">País</label>
           </p-floatLabel>
           <app-errors-form-messages
             [control]="editHotelForm.controls.address.controls.country"
             displayName="El país"></app-errors-form-messages>
         </div>
-
         <div class="w-full">
           <p-floatLabel class="w-full">
-            <input
+            <p-dropdown
+              styleClass="w-full"
+              class="city-dropdown"
+              [options]="cities"
+              optionLabel="name"
+              optionValue="name"
+              appendTo="body"
+              [filter]="true"
               id="address_city"
-              type="text"
-              pInputText
-              class="w-full"
-              [formControl]="editHotelForm.controls.address.controls.city" />
+              filterBy="name"
+              [showClear]="true"
+              [formControl]="editHotelForm.controls.address.controls.city"
+              placeholder="Ciudad" />
             <label for="address_city">Ciudad/Provincia</label>
           </p-floatLabel>
           <app-errors-form-messages

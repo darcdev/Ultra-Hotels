@@ -24,6 +24,8 @@ import { StatusProcessAction } from '@/app/presenter/models/state/statusProcessA
 import { RoomEntity } from '@/app/domain/entities/room.entity';
 import { GetRoomByIdUseCaseService } from '@/app/domain/usecases/room/get-room-by-id-use-case.service';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { EditRoom } from '@/app/presenter/state/rooms/actions';
+import { Store } from '@ngxs/store';
 
 interface EditRoomModalDynamicDialogConfigData {
   room: RoomEntity;
@@ -59,7 +61,8 @@ export class EditRoomDialogComponent implements OnInit {
     private getRoomUseCaseService: GetRoomByIdUseCaseService,
     private dialogConfigService: DynamicDialogConfig<EditRoomModalDynamicDialogConfigData>,
     private messageService: MessageService,
-    private dialogRef: DynamicDialogRef
+    private dialogRef: DynamicDialogRef,
+    private store: Store
   ) {
     this.editRoomForm = this.fb.group<EditRoomForm>({
       type: this.fb.control(null, {
@@ -124,7 +127,7 @@ export class EditRoomDialogComponent implements OnInit {
       return;
     }
     try {
-      await this.editRoomUseCaseService.execute({
+      const editedRoom = await this.editRoomUseCaseService.execute({
         roomId: this.dialogConfigService.data?.room.id ?? '',
         roomData: {
           id: this.dialogConfigService.data?.room.id ?? '',
@@ -143,6 +146,8 @@ export class EditRoomDialogComponent implements OnInit {
             this.editRoomForm.value.isAvailable ?? this.actualRoom.isAvailable,
         },
       });
+
+      this.store.dispatch(new EditRoom(editedRoom));
 
       this.messageService.add({
         severity: 'success',

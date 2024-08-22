@@ -7,6 +7,8 @@ export class HotelEntity {
     public country: string,
     public city: string,
     public additionalAdressInfo: string,
+    public latitude?: number,
+    public longitude?: number,
     public rooms?: RoomEntity[],
     public isActive?: boolean,
     public agency?: string,

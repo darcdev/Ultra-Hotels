@@ -16,6 +16,8 @@ export class CreateHotelMapper implements Mapper<HotelEntity, HotelDto> {
       description: param.description,
       additional_info_address: param.additionalAdressInfo,
       agencyId: param.agency,
+      latitude: param?.latitude,
+      longitude: param?.longitude,
     };
   }
   mapTo(param: HotelDto): HotelEntity {
@@ -27,6 +29,8 @@ export class CreateHotelMapper implements Mapper<HotelEntity, HotelDto> {
       description: param.description,
       additionalAdressInfo: param.additional_info_address,
       agency: param.agencyId,
+      latitude: param?.latitude,
+      longitude: param?.longitude,
     };
   }
 }

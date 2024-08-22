@@ -6,6 +6,8 @@ import { HotelEntity } from '@/app/domain/entities/hotel.entity';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { HotelState } from '@/app/presenter/state/hotels';
+import { RoomState } from '@/app/presenter/state/rooms';
+import { SetRooms } from '@/app/presenter/state/rooms/actions';
 
 @Component({
   selector: 'app-list-rooms',
@@ -16,6 +18,7 @@ import { HotelState } from '@/app/presenter/state/hotels';
 })
 export class ListRoomsComponent implements OnInit, OnDestroy {
   listRooms: RoomEntity[] = [];
+  listRooms$: Observable<RoomEntity[] | null>;
 
   actualHotel: HotelEntity | null = null;
   actualHotel$: Observable<HotelEntity | null>;
@@ -25,10 +28,14 @@ export class ListRoomsComponent implements OnInit, OnDestroy {
     private getAllRoomsByHotelUseCaseService: GetAllRoomsByHotelUseCaseService,
     private store: Store
   ) {
+    this.listRooms$ = this.store.select(RoomState.getRooms);
     this.actualHotel$ = this.store.select(HotelState.getActualHotel);
   }
 
   ngOnInit() {
+    this.listRooms$.subscribe(listRooms => {
+      this.listRooms = listRooms ?? [];
+    });
     this.actualHotel$.subscribe(actualHotel => {
       this.actualHotel = actualHotel;
       void this.loadAllRoomsByHotel();
@@ -40,6 +47,7 @@ export class ListRoomsComponent implements OnInit, OnDestroy {
       this.listRooms = await this.getAllRoomsByHotelUseCaseService.execute(
         this.actualHotel?.id ?? ''
       );
+      this.store.dispatch(new SetRooms(this.listRooms));
     } catch (error) {
       console.error('error al traer la lista de hoteles', error);
     }

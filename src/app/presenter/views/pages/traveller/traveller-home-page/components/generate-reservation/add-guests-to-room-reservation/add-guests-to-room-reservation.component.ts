@@ -173,6 +173,7 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
         success: true,
       });
     } catch (error) {
+      console.log('error', error);
       if (error instanceof BookingOperationError) {
         console.error(
           'Ha ocurrido un error al crear la reservación',

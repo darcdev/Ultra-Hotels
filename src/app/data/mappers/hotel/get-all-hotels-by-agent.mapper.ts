@@ -18,6 +18,8 @@ export class GetAllHotelsByAgentMapper
       description: param.description,
       additional_info_address: param.additionalAdressInfo,
       isActive: param.isActive,
+      latitude: param?.latitude,
+      longitude: param?.longitude,
     };
   }
   mapTo(param: HotelDto): HotelEntity {
@@ -29,6 +31,8 @@ export class GetAllHotelsByAgentMapper
       description: param.description,
       additionalAdressInfo: param.additional_info_address,
       isActive: param.isActive,
+      latitude: param?.latitude,
+      longitude: param?.longitude,
     };
   }
 }

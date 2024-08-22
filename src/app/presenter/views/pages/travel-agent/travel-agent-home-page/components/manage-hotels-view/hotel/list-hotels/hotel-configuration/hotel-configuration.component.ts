@@ -12,7 +12,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DeleteHotelUseCaseService } from '@/app/domain/usecases/hotel/delete-hotel-use-case.service';
 import { SidebarModule } from 'primeng/sidebar';
 import { Store } from '@ngxs/store';
-import { AddActualHotel } from '@/app/presenter/state/hotels/actions';
+import {
+  AddActualHotel,
+  RemoveHotel,
+} from '@/app/presenter/state/hotels/actions';
 
 @Component({
   selector: 'app-hotel-configuration',
@@ -71,6 +74,7 @@ export class HotelConfigurationComponent {
         'p-button-text p-button-danger bg-error text-white',
       accept: async () => {
         await this.deleteHotelUseCase.execute(this.hotel.id ?? '');
+        this.store.dispatch(new RemoveHotel(this.hotel.id ?? ''));
         this.messageService.add({
           severity: 'success',
           summary: 'Eliminar Hotel',
