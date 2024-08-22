@@ -105,7 +105,7 @@ export class HotelRepositoryService extends IHotelRepository {
     let query = this.supabaseService.supabase.from(this.nameTable).select('*');
 
     if (agencyId) {
-      query = query.eq('agency_id', agencyId);
+      query = query.eq('agencyId', agencyId);
     }
 
     const { data, error } = await query;

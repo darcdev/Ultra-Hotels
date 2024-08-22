@@ -1,0 +1,30 @@
+<section class="guests-booking-list">
+  <div class="guests_info__emergency_contact">
+    <h3 class="guests_info__emergency_contact__title">
+      <app-icon name="matWarningRound" color="red"></app-icon> Contacto de
+      emergencia
+    </h3>
+    <div class="guests_info__emergency_contact__info">
+      <p class="guests_info__emergency_contact__info__name">
+        Nombre: {{ reservation.emergencyContactFullName }}
+      </p>
+      <p class="guests_info__emergency_contact__info__phone">
+        Teléfono: {{ reservation.emergencyPhone }}
+      </p>
+    </div>
+  </div>
+  <div class="guests_information">
+    <h3 class="guests_information__title text-body-lg">
+      <span class="text-primary-500">
+        <app-icon name="matPeopleRound" class="mr-2"></app-icon>
+      </span>
+      Huespedes
+    </h3>
+    <div class="guests_information__list">
+      @for (guest of listOfGuests; track guest.id) {
+        <app-guest-reservation-item
+          [guest]="guest"></app-guest-reservation-item>
+      }
+    </div>
+  </div>
+</section>

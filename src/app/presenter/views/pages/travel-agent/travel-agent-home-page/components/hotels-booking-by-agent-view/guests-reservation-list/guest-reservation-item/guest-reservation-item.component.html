@@ -1,0 +1,49 @@
+<p-card [style]="{ width: '220px' }" class="guest-item">
+  <div class="guest-item-body">
+    <h3 class="guest-item-body__title-guest text-subheadline-lg">
+      {{ guest.fullName }}
+    </h3>
+    <hr class="my-2" />
+
+    <div class="mt-5 flex flex-col gap-2">
+      <span class="text-body-sm">
+        <app-icon
+          name="matPhoneRound"
+          size="1.2rem"
+          class="type-info-icon"></app-icon>
+        Télefono : {{ guest.phoneNumber }}
+      </span>
+      <span class="text-body-sm">
+        <app-icon
+          name="matEmailRound"
+          size="1.2rem"
+          class="type-info-icon"></app-icon>
+        Email : {{ guest.email }}
+      </span>
+      <span class="text-body-sm">
+        <app-icon
+          name="matWoman2Round"
+          size="1.2rem"
+          class="type-info-icon"></app-icon>
+        Genero : {{ guest.gender }}
+      </span>
+      <span class="text-body-sm">
+        <app-icon
+          name="matChildFriendlyRound"
+          size="1.2rem"
+          class="type-info-icon"></app-icon>
+        Nacimiento : {{ guest.birthDate }}
+      </span>
+
+      <p class="text-body-sm">
+        <span>
+          <app-icon
+            name="matPermContactCalendarRound"
+            size="1.2rem"
+            class="type-info-icon"></app-icon>
+          {{ guest.documentType }} : {{ guest.documentNumber }}
+        </span>
+      </p>
+    </div>
+  </div>
+</p-card>

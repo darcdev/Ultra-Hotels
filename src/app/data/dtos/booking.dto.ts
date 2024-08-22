@@ -1,4 +1,5 @@
 import { GuestDto } from '@/app/data/dtos/guest.dto';
+import { RoomDto } from '@/app/data/dtos/room.dto';
 
 export interface BookingDto {
   id?: string;
@@ -9,4 +10,5 @@ export interface BookingDto {
   total_price: number;
   guests?: GuestDto[];
   room_id?: string;
+  rooms?: RoomDto | RoomDto[];
 }

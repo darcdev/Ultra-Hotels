@@ -11,7 +11,7 @@ export class GetAllHotelsByAgentMapper
 {
   mapFrom(param: HotelEntity): HotelDto {
     return {
-      id: param.id,
+      id: param?.id,
       name: param.name,
       city: param.city,
       country: param.country,
@@ -22,7 +22,7 @@ export class GetAllHotelsByAgentMapper
   }
   mapTo(param: HotelDto): HotelEntity {
     return {
-      id: param.id,
+      id: param?.id,
       name: param.name,
       city: param.city,
       country: param.country,

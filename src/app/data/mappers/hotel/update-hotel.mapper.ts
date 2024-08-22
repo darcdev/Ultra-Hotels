@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class UpdateHotelMapper implements Mapper<HotelEntity, HotelDto> {
   mapFrom(param: HotelEntity): HotelDto {
     return {
-      id: param.id,
+      id: param?.id,
       name: param.name,
       city: param.city,
       country: param.country,
@@ -20,7 +20,7 @@ export class UpdateHotelMapper implements Mapper<HotelEntity, HotelDto> {
   }
   mapTo(param: HotelDto): HotelEntity {
     return {
-      id: param.id,
+      id: param?.id,
       name: param.name,
       city: param.city,
       country: param.country,

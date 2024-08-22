@@ -1,0 +1,8 @@
+.guest-item .guest-item-body__title-guest {
+  @apply font-bold text-secondary-700 line-clamp-2;
+}
+
+.type-info-icon {
+  @apply text-primary-500;
+  @apply mr-2;
+}

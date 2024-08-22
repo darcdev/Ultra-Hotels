@@ -1,0 +1,60 @@
+<p-card [style]="{ width: '260px' }" class="reservation-item">
+  <div class="reservation-item-body">
+    <h3 class="reservation-item-body__title-reservation text-subheadline-sm">
+      Hotel {{ reservation.rooms?.hotels?.name }}
+    </h3>
+    <div class="mt-2">
+      <p class="reservation-item-body__description-reservation text-body-md">
+        Habitación : {{ reservation?.rooms?.type }}
+      </p>
+      <p class="reservation-item-body__description-reservation text-body-md">
+        Ubicación : {{ reservation?.rooms?.roomNumber }}
+      </p>
+    </div>
+
+    <hr class="my-2" />
+
+    <div class="mt-5 flex flex-col gap-2">
+      <span class="text-body-sm">
+        <app-icon name="matBackpackRound" size="1.2rem" class="mr-2"></app-icon>
+        Llegada -> {{ reservation?.dateArrive }}
+      </span>
+      <span class="text-body-sm">
+        <app-icon
+          name="matLeaveBagsAtHomeRound"
+          size="1.2rem"
+          class="mr-2"></app-icon>
+        Regreso <- {{ reservation.dateCheckout }}
+      </span>
+      <span class="text-body-sm">
+        <app-icon name="matPeopleRound" size="1.2rem" class="mr-2"></app-icon>
+        {{ reservation.guests?.length }}
+        {{
+          reservation.guests?.length === 1
+            ? 'Persona hospedada'
+            : 'Personas hospedadas'
+        }}
+      </span>
+      <span class="text-body-sm">
+        <app-icon
+          name="matAttachMoneyRound"
+          size="1.2rem"
+          class="mr-2"></app-icon>
+        {{ reservation.totalPrice }} COP
+      </span>
+      <p class="text-body-sm">
+        <span>
+          <app-icon name="matLocationOnRound" size="1.2rem"></app-icon>
+        </span>
+        {{ reservation?.rooms?.hotels?.country }},
+        {{ reservation.rooms?.hotels?.city }}
+      </p>
+    </div>
+  </div>
+  <ng-template pTemplate="footer" class="reservation-item-footer">
+    <p-button
+      size="small"
+      label="Ver huespedes"
+      (click)="viewGuestsReservation()"></p-button>
+  </ng-template>
+</p-card>

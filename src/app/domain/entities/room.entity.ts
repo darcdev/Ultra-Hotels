@@ -1,3 +1,5 @@
+import { HotelEntity } from '@/app/domain/entities/hotel.entity';
+
 export class RoomEntity {
   constructor(
     public type: string,
@@ -8,6 +10,7 @@ export class RoomEntity {
     public description: string,
     public isAvailable?: boolean,
     public hotel?: string,
-    public id?: string
+    public id?: string,
+    public hotels?: HotelEntity
   ) {}
 }

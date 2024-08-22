@@ -55,7 +55,7 @@ export class SidebarRoomsHotelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.actualHotelSubscription.unsubscribe();
+    this.actualHotelSubscription?.unsubscribe();
   }
 
   openCreateRoomModal() {

@@ -1,5 +1,3 @@
-import { ActorRoles } from '@/app/core/constants/ActorRoles';
-
 export interface LoginUserRequestDTO {
   email: string;
   password: string;
@@ -8,5 +6,5 @@ export interface LoginUserRequestDTO {
 export interface RegisterUserRequestDTO {
   email: string;
   password: string;
-  role: ActorRoles;
+  full_name: string;
 }

@@ -1,3 +1,5 @@
+import { HotelDto } from '@/app/data/dtos/hotel.dto';
+
 export interface RoomDto {
   id?: string;
   capacity: number;
@@ -8,4 +10,5 @@ export interface RoomDto {
   type: string;
   hotel_id?: string;
   description: string;
+  hotels?: HotelDto | HotelDto[];
 }

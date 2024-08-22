@@ -31,13 +31,17 @@
     </div>
   </div>
   <ng-template pTemplate="footer" class="hotel-item-footer">
-    @if (actualSearchHotel?.dateArrive && actualSearchHotel?.dateCheckout) {
+    @if (
+      actualSearchHotel?.dateArrive &&
+      actualSearchHotel?.dateCheckout &&
+      actualUserSession
+    ) {
       <app-button size="small" (click)="openReservationModal()">
         <app-icon
           name="matShoppingCartRound"
           size="1.2rem"
           class="mr-2"></app-icon>
-        Quiero Reservar</app-button
+        Reservar</app-button
       >
     }
   </ng-template>

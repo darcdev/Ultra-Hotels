@@ -5,7 +5,11 @@
     size="large"
     shape="circle">
     <p-overlayPanel #op>
-      <div class="p-d-flex p-flex-column p-ai-center">
+      <div class="flex flex-col justify-center">
+        <span
+          ><app-icon name="matPersonRound" class="mr-2"></app-icon
+          >{{ userData?.profile?.full_name }}</span
+        >
         <span
           ><app-icon name="matEmailRound" class="mr-2"></app-icon
           >{{ sessionUser?.user?.email }}</span

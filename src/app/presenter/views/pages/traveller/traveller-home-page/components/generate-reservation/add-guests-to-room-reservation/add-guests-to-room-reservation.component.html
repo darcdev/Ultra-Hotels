@@ -47,9 +47,11 @@
           class="passenger-group flex flex-col gap-y-8 mt-5">
           <div class="flex justify-between">
             <h2 class="my-2 font-bold">Huesped {{ i + 1 }}</h2>
-            <button class="text-error" (click)="removeGuest(i)">
-              <app-icon name="matDeleteRound"></app-icon>
-            </button>
+            @if (guests.length > 1) {
+              <button class="text-error" (click)="removeGuest(i)">
+                <app-icon name="matDeleteRound"></app-icon>
+              </button>
+            }
           </div>
           <div class="flex flex-col gap-8">
             <!-- Full Name -->
@@ -167,7 +169,7 @@
         </div>
 
         <!-- Add Guest Button -->
-        @if (actualRoom!.capacity > guests.length) {
+        @if (guests.length < actualRoom!.capacity) {
           <div class="mt-2">
             <app-button
               pButton

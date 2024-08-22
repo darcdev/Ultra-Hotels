@@ -12,6 +12,8 @@ import { HotelFilterModel } from '@/app/presenter/models/form/hotel-filter.model
 import { Observable } from 'rxjs';
 import { SearchHotelsFilterState } from '@/app/presenter/state/searchHotelsFilter';
 import { Store } from '@ngxs/store';
+import { SessionUserService } from '@/app/presenter/views/shared/services/session-user.service';
+import { Session } from '@supabase/supabase-js';
 
 @Component({
   selector: 'app-list-filter-item',
@@ -35,12 +37,18 @@ export class ListFilterItemComponent implements OnInit {
 
   actualSearchHotel: HotelFilterModel | null = null;
   actualSearchHotel$: Observable<HotelFilterModel | null>;
+  actualUserSession: Session | null = null;
 
   constructor(
     public dialogService: DialogService,
     private store: Store,
-    private mesaageService: MessageService
+    private mesaageService: MessageService,
+    private userSessionService: SessionUserService
   ) {
+    this.userSessionService.session$.subscribe(session => {
+      this.actualUserSession = session;
+    });
+
     this.actualSearchHotel$ = this.store.select(
       SearchHotelsFilterState.getActualSearchHotelFilter
     );

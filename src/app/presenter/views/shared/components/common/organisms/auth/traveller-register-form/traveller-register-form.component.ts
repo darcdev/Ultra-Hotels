@@ -23,7 +23,6 @@ import { AuthenticateUserOAuthService } from '@/app/domain/usecases/user/authent
 import { OauthProviders } from '@/app/core/constants/OauthProviders';
 import { CreateSimpleAccountUserUseCaseService } from '@/app/domain/usecases/user/create-simple-account-user-use-case.service';
 import { RegisterUserRequestDTO } from '@/app/core/models/dtos/auth';
-import { ActorRoles } from '@/app/core/constants/ActorRoles';
 import { ErrorsFormMessagesComponent } from '@/app/presenter/views/shared/components/common/organisms/errors-form-messages/errors-form-messages.component';
 import { matchPasswords } from '@/app/presenter/views/shared/validators/matchPasswords';
 import { MessageService } from 'primeng/api';
@@ -62,6 +61,10 @@ export class TravellerRegisterFormComponent {
   ) {
     this.travellerRegisterForm = new FormGroup<RegisterTravellerForm>(
       {
+        full_name: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
         email: new FormControl('', {
           nonNullable: true,
           validators: [Validators.required, Validators.email],
@@ -96,7 +99,7 @@ export class TravellerRegisterFormComponent {
       const userDataRegisterDTO: RegisterUserRequestDTO = {
         email: userDataRegister.email ?? '',
         password: userDataRegister.password ?? '',
-        role: ActorRoles.TRAVELLER,
+        full_name: userDataRegister.full_name ?? '',
       };
 
       const { data } =

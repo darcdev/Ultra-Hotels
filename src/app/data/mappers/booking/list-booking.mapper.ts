@@ -14,6 +14,7 @@ export class ListBookingMapper implements Mapper<BookingEntity, BookingDto> {
       total_price: param.totalPrice,
       date_arrive: param.dateArrive,
       date_checkout: param.dateCheckout,
+      room_id: param.room,
     };
   }
   mapTo(param: BookingDto): BookingEntity {
@@ -23,6 +24,7 @@ export class ListBookingMapper implements Mapper<BookingEntity, BookingDto> {
       totalPrice: param.total_price,
       dateArrive: param.date_arrive,
       dateCheckout: param.date_checkout,
+      room: param.room_id,
     };
   }
 }

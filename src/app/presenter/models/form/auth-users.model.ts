@@ -6,6 +6,7 @@ export interface LoginUserForm {
 }
 
 export interface RegisterTravellerForm {
+  full_name: FormControl<string>;
   email: FormControl<string>;
   password: FormControl<string>;
   repeatPassword: FormControl<string>;

@@ -28,6 +28,20 @@
         <div class="w-full">
           <p-floatLabel class="w-full">
             <input
+              id="name"
+              type="text"
+              pInputText
+              class="w-full"
+              [formControl]="travellerRegisterForm.controls.full_name" />
+            <label for="name">Nombre completo</label>
+          </p-floatLabel>
+          <app-errors-form-messages
+            [control]="travellerRegisterForm.controls.full_name"
+            displayName="La contraseña"></app-errors-form-messages>
+        </div>
+        <div class="w-full">
+          <p-floatLabel class="w-full">
+            <input
               id="email"
               type="email"
               pInputText

@@ -15,14 +15,15 @@
             name="matPeopleOutlineRound"
             size="1.2rem"
             class="mr-2"></app-icon>
-          3 personas
+          {{ room?.capacity }}
+          {{ room.capacity === 1 ? 'persona' : 'personas' }}
         </span>
         <span class="text-caption-lg">
           <app-icon
             name="matLocationOnRound"
             size="1.2rem"
             class="mr-2"></app-icon>
-          303
+          {{ room?.roomNumber }}
         </span>
         <span class="text-caption-lg">
           <app-icon
