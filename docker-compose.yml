@@ -8,5 +8,3 @@ services:
       - '3000:80'
     volumes:
       - .:/app
-    environment:
-      - ANGULAR_APP_API_URL=http://ultra.hotels.api:5000

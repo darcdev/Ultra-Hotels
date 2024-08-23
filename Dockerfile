@@ -1,19 +1,27 @@
-FROM node:20.11.1-alpine as build
+### STAGE 1:COMPILATION ###
+
+FROM node:20-alpine3.19 as build
+
+RUN mkdir -p /app
 
 WORKDIR /app
 
+COPY package*.json /app
+
+RUN npm install -g @angular/cli
+
+RUN npm install
+
 COPY . .
 
-RUN npm ci
+RUN ng build --configuration=production
 
-RUN npm run build
 
-FROM nginx:latest
+### STAGE 2:RUN ###
 
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM nginx:1.17.1-alpine
 
-COPY --from=build /app/dist/ultra-hotels /usr/share/nginx/html
+COPY --from=build app/dist/ultra-hotels/browser /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
