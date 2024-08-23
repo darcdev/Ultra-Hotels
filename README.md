@@ -1,5 +1,16 @@
 # Información del Proyecto Ultra Hotels
 
+
+### Credenciales ###
+
+#### Agente de viajes  (Seleccionar al momento de ingresar al login, la pestaña de soy agente de viajes)
+  - user: usuario_demo@prueba.com
+  - password:123456789
+
+#### Viajero (Seleccionar al moment de ingresar al login, la pestaña de soy viajero)
+  - user: viajero_demo@prueba.com
+  - password:987654321
+
 ## 1. Arquitectura del Proyecto
 
 El proyecto se ha desarrollado bajo el enfoque arquitectónico Clean Architecture, que permite mantener una separación clara de responsabilidades entre las diferentes capas de la aplicación, favoreciendo el desacoplamiento y la mantenibilidad del sistema.
@@ -35,9 +46,9 @@ El proyecto se ha desarrollado bajo el enfoque arquitectónico Clean Architectur
 
 ## 2. Tecnologías Utilizadas
 
-- **Angular:** Framework principal que soporta la construcción modular de la aplicación.
-- **PrimeNG:** Biblioteca de componentes UI que permite el desarrollo de interfaces ricas y dinámicas.
-- **Tailwind CSS:** Utilizado para estilizar la aplicación de manera eficiente y conforme a los principios de BEM.
+- **Angular:** Framework principal que soporta la construcción modular de la aplicación. Versión 18 (Ultima)
+- **PrimeNG:** Biblioteca de componentes UI que permite el desarrollo de interfaces personalizables y dinámicas.
+- **Tailwind CSS:** Utilizado para estilizar la aplicación de manera eficiente y agil y conforme a los principios de BEM.
 - **Supabase:** Solución backend para la gestión en tiempo real de bases de datos y autenticación de usuarios.
 - **NGXS:** Biblioteca utilizada para la gestión del estado global, permitiendo que la aplicación se vea fluida.
 - **TypeScript:** Proporciona tipado estático, mejorando la robustez y la mantenibilidad del código.
