@@ -1,19 +1,15 @@
-FROM node:20.0.0 as build
+FROM node:20.11.1-alpine as build
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install -g @angular/cli
-
-RUN npm install
-
 COPY . .
 
-RUN ng build --configuration=production
+RUN npm ci
+
+RUN npm run build
 
 FROM nginx:latest
 
-COPY --from=build app/dist/ultra-hotels /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80
+COPY --from=build /app/dist/ultra-hotels /usr/share/nginx/html
