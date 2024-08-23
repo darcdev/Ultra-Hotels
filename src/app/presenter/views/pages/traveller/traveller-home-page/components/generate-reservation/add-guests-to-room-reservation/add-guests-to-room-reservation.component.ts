@@ -152,8 +152,6 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
       this.reservationForm.markAllAsTouched();
       return;
     }
-    console.log('ssss');
-    console.log(this.actualSearchHotel);
     this.stateReservationProcess = StatusProcessAction.LOADING;
     try {
       await this.createCompleteBookingUseCaseService.execute({

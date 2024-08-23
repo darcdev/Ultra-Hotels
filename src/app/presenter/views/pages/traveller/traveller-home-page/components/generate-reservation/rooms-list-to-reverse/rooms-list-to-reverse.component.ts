@@ -74,7 +74,6 @@ export class RoomsListToReverseComponent implements OnInit {
     this.refAddGuestToRoomReservation.onClose.subscribe(
       (data: { success: boolean }) => {
         if (data?.success) {
-          console.log('xxaaa2');
           this.dynamicGenerateReservationDialogRef.close({
             success: true,
           });

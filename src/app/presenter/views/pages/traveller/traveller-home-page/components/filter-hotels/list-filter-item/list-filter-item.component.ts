@@ -79,7 +79,6 @@ export class ListFilterItemComponent implements OnInit {
     this.refGenerateReservationModal.onClose.subscribe(
       (data: { success: boolean }) => {
         if (data?.success) {
-          console.log('xxaaa');
           this.mesaageService.add({
             severity: 'success',
             summary: 'Reservación completada',

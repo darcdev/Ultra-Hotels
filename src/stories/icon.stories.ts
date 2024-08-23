@@ -1,9 +1,16 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { IconComponent } from '@/app/presenter/views/shared/components/design-system/atoms/icon/icon.component';
+import { provideIcons } from '@ng-icons/core';
+import { materialUIIcons } from '@/app/presenter/icons/providerIcons';
 
 export default {
   title: 'Components/Icon',
   component: IconComponent,
+  decorators: [
+    moduleMetadata({
+      providers: [provideIcons({ ...materialUIIcons })],
+    }),
+  ],
   argTypes: {
     name: {
       control: 'text',
