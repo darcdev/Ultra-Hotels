@@ -13,3 +13,7 @@ FROM nginx:latest
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/dist/ultra-hotels /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
