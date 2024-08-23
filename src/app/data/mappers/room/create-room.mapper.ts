@@ -21,6 +21,7 @@ export class CreateRoomMapper implements Mapper<RoomEntity, RoomDto> {
   }
   mapTo(param: RoomDto): RoomEntity {
     return {
+      id: param.id,
       capacity: param.capacity,
       roomNumber: param.room_number,
       basePrice: param.base_price,
