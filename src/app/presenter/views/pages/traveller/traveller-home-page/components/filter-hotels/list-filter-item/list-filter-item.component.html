@@ -1,4 +1,6 @@
-<p-card [style]="{ width: '260px' }" class="hotel-to-users-item">
+<p-card
+  [style]="{ width: '260px', height: '350px', padding: 0 }"
+  class="hotel-to-users-item">
   <ng-template pTemplate="header" class="hotel-item-header">
     <img
       alt="Hotel Alto"
@@ -31,18 +33,10 @@
     </div>
   </div>
   <ng-template pTemplate="footer" class="hotel-item-footer">
-    @if (
-      actualSearchHotel?.dateArrive &&
-      actualSearchHotel?.dateCheckout &&
-      actualUserSession
-    ) {
-      <app-button size="small" (click)="openReservationModal()">
-        <app-icon
-          name="matShoppingCartRound"
-          size="1.2rem"
-          class="mr-2"></app-icon>
-        Reservar</app-button
-      >
-    }
+    <app-button size="small" (click)="openReservationModal()">
+      <app-icon name="matBedRound" size="1.2rem" class="mr-2"></app-icon>
+      Ver habitaciones</app-button
+    >
   </ng-template>
 </p-card>
+<p-toast />

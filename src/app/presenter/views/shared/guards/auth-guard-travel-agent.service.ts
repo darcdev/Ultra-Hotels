@@ -25,7 +25,6 @@ export class AuthGuardTravelAgent implements CanActivate {
     const requiredRole = ActorRoles.TRAVEL_AGENT;
     try {
       const user = await this.authSessionService.getUser();
-      console.log(user);
       if (!user || user.profile.role !== requiredRole) {
         await this.router.navigate(['']);
         return false;

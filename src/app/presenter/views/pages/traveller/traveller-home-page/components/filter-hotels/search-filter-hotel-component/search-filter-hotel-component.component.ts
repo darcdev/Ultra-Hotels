@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ButtonComponent } from '@/app/presenter/views/shared/components/design-system/atoms/button/button.component';
 import { ButtonDirective } from 'primeng/button';
 import { IconComponent } from '@/app/presenter/views/shared/components/design-system/atoms/icon/icon.component';
@@ -15,6 +15,9 @@ import { IncrementDecrementValueComponent } from '@/app/presenter/views/shared/c
 import { Store } from '@ngxs/store';
 import { AddActualSearchHotel } from '@/app/presenter/state/searchHotelsFilter/actions';
 import { convertEuropeFormatDateToISO8601 } from '@/app/presenter/views/shared/helpers/convertEuropeFormatDateToISO8601';
+import { MessageModule } from 'primeng/message';
+import { SearchHotelsFilterState } from '@/app/presenter/state/searchHotelsFilter';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-filter-hotel-component',
@@ -28,12 +31,17 @@ import { convertEuropeFormatDateToISO8601 } from '@/app/presenter/views/shared/h
     InputNumberModule,
     ReactiveFormsModule,
     IncrementDecrementValueComponent,
+    MessageModule,
   ],
   templateUrl: './search-filter-hotel-component.component.html',
   styleUrl: './search-filter-hotel-component.component.scss',
 })
-export class SearchFilterHotelComponentComponent implements OnInit {
+export class SearchFilterHotelComponentComponent implements OnInit, OnDestroy {
   searchHotelsForm: FormGroup<HotelFilterForm>;
+
+  actualSearchHotel$!: Observable<HotelFilterModel | null>;
+  actualSearchHotel!: HotelFilterModel | null;
+  actualSearchHotelSubscribe!: Subscription;
 
   minDateCalendar = new Date();
 
@@ -42,11 +50,19 @@ export class SearchFilterHotelComponentComponent implements OnInit {
       city: new FormControl(null, []),
       dateArrive: new FormControl(null, []),
       dateCheckout: new FormControl(null, []),
-      numGuests: new FormControl(0, []),
+      numGuests: new FormControl(1, []),
     });
+    this.actualSearchHotel$ = this.store.select(
+      SearchHotelsFilterState.getActualSearchHotelFilter
+    );
   }
 
   ngOnInit() {
+    this.actualSearchHotelSubscribe = this.actualSearchHotel$.subscribe(
+      actualSearchHotel => {
+        this.actualSearchHotel = actualSearchHotel;
+      }
+    );
     this.store.dispatch(
       new AddActualSearchHotel({
         city: null,
@@ -103,5 +119,8 @@ export class SearchFilterHotelComponentComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.actualSearchHotelSubscribe?.unsubscribe();
+  }
   protected readonly cities = cities;
 }

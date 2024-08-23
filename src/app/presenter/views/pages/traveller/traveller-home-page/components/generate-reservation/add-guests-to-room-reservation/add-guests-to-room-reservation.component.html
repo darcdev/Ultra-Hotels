@@ -76,6 +76,7 @@
                 <p-calendar
                   id="birthdate_{{ i }}"
                   styleClass="w-full"
+                  dateFormat="yy/mm/dd"
                   class="w-full"
                   [formControl]="guest.controls.birthDate" />
 
@@ -182,6 +183,19 @@
           </div>
         }
       </div>
+      <div class="flex justify-center mt-2">
+        @if (stateReservationProcess === StatusProcessAction.ERROR) {
+          <p-message
+            severity="error"
+            text="Ha ocurrido un error al realizar la reserva, intente de nuevo"></p-message>
+        }
+        @if (stateReservationProcess === StatusProcessAction.LOADING) {
+          <p-progressSpinner
+            ariaLabel="loading"
+            styleClass="w-[20px] h-[20px] mr-2" />
+          <p>Reservando...</p>
+        }
+      </div>
       <div class="mt-5 flex justify-center">
         <app-button
           pButton
@@ -192,11 +206,14 @@
       </div>
     </form>
   </div>
+
   <ng-template pTemplate="footer">
-    <p-button
-      label="Cancel"
-      [text]="true"
-      severity="secondary"
-      (onClick)="submitReservation()" />
+    @if (stateReservationProcess !== StatusProcessAction.LOADING) {
+      <p-button
+        label="Cancel"
+        [text]="true"
+        severity="secondary"
+        (onClick)="submitReservation()" />
+    }
   </ng-template>
 </div>

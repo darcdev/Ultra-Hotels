@@ -48,9 +48,7 @@ export class CreateCompleteBookingUseCaseService
     const bookingCompleteInfo: BookingEntity =
       await this._bookingRepository.getDetailBookingInfo(booking.id);
 
-    console.log(bookingCompleteInfo);
     this._notificationService.setStrategy(this._emailNotificationService);
-    console.log(booking);
 
     const mailBookingData: BookingEmailFormat = {
       typeRoom: bookingCompleteInfo.rooms!.type,

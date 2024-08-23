@@ -14,6 +14,8 @@ import { SearchHotelsFilterState } from '@/app/presenter/state/searchHotelsFilte
 import { Store } from '@ngxs/store';
 import { SessionUserService } from '@/app/presenter/views/shared/services/session-user.service';
 import { Session } from '@supabase/supabase-js';
+import { AddActualSearchHotel } from '@/app/presenter/state/searchHotelsFilter/actions';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-list-filter-item',
@@ -25,10 +27,10 @@ import { Session } from '@supabase/supabase-js';
     PrimeTemplate,
     TagModule,
     ButtonComponent,
+    ToastModule,
   ],
   templateUrl: './list-filter-item.component.html',
   styleUrl: './list-filter-item.component.scss',
-  providers: [MessageService],
 })
 export class ListFilterItemComponent implements OnInit {
   @Input({ required: true }) hotel!: HotelEntity;
@@ -65,7 +67,7 @@ export class ListFilterItemComponent implements OnInit {
       GenerateReservationComponent,
       {
         header: 'Habitaciónes disponibles para reservar',
-        width: '30rem',
+        width: '50rem',
         breakpoints: {
           '769px': '90%',
         },
@@ -77,11 +79,20 @@ export class ListFilterItemComponent implements OnInit {
     this.refGenerateReservationModal.onClose.subscribe(
       (data: { success: boolean }) => {
         if (data?.success) {
+          console.log('xxaaa');
           this.mesaageService.add({
             severity: 'success',
             summary: 'Reservación completada',
             detail: 'La reservación se ha completado con éxito',
           });
+          this.store.dispatch(
+            new AddActualSearchHotel({
+              city: '',
+              dateArrive: '',
+              dateCheckout: '',
+              numGuests: 1,
+            })
+          );
         }
       }
     );

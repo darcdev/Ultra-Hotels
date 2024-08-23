@@ -8,6 +8,7 @@ import { Store } from '@ngxs/store';
 import { HotelState } from '@/app/presenter/state/hotels';
 import { RoomState } from '@/app/presenter/state/rooms';
 import { SetRooms } from '@/app/presenter/state/rooms/actions';
+import { AddActualHotel } from '@/app/presenter/state/hotels/actions';
 
 @Component({
   selector: 'app-list-rooms',
@@ -23,6 +24,7 @@ export class ListRoomsComponent implements OnInit, OnDestroy {
   actualHotel: HotelEntity | null = null;
   actualHotel$: Observable<HotelEntity | null>;
   actualHotelSubcriber!: Subscription;
+  listRoomsSubcriber!: Subscription;
 
   constructor(
     private getAllRoomsByHotelUseCaseService: GetAllRoomsByHotelUseCaseService,
@@ -33,12 +35,14 @@ export class ListRoomsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.listRooms$.subscribe(listRooms => {
+    this.listRoomsSubcriber = this.listRooms$.subscribe(listRooms => {
       this.listRooms = listRooms ?? [];
     });
-    this.actualHotel$.subscribe(actualHotel => {
+    this.actualHotelSubcriber = this.actualHotel$.subscribe(actualHotel => {
       this.actualHotel = actualHotel;
-      void this.loadAllRoomsByHotel();
+      if (actualHotel) {
+        void this.loadAllRoomsByHotel();
+      }
     });
   }
 
@@ -55,6 +59,9 @@ export class ListRoomsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.listRooms = [];
+    this.store.dispatch(new AddActualHotel(null));
+    this.store.dispatch(new SetRooms([]));
     this.actualHotelSubcriber?.unsubscribe();
+    this.listRoomsSubcriber?.unsubscribe();
   }
 }

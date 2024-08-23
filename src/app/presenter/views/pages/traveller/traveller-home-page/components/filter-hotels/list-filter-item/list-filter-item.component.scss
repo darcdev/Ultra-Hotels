@@ -1,10 +1,5 @@
-::ng-deep p-card.hotel-to-users-item .p-card {
-  border-radius: 20px;
-  border: none;
-  @apply shadow-md;
-}
-
 .hotel-to-users-item {
+  @apply flex flex-col items-end;
 }
 
 .hotel-to-users-item .hotel-item-header__image {
@@ -12,6 +7,16 @@
   object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+}
+
+.hotel-item-body {
+  @apply flex flex-col justify-between;
+}
+
+::ng-deep p-card.hotel-to-users-item .p-card {
+  border-radius: 20px;
+  border: none;
+  @apply shadow-md;
 }
 
 ::ng-deep p-card.hotel-to-users-item .p-card-body .p-card-content {
@@ -25,10 +30,11 @@
 }
 
 .hotel-item-body .hotel-item-body__description-hotel {
-  @apply line-clamp-2;
+  @apply line-clamp-1;
 }
 
 .hotel-item-footer {
+  @apply flex justify-center;
 }
 
 .hotel-item-footer__settings {
