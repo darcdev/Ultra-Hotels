@@ -23,8 +23,8 @@ import { IconComponent } from '@/app/presenter/views/shared/components/design-sy
 export class MapModalComponent {
   map!: Map;
   marker!: Marker;
-  latitude!: number;
-  longitude!: number;
+  latitude = 4.5709;
+  longitude = -74.2973;
 
   constructor(private mapDialogRef: DynamicDialogRef) {}
 
@@ -36,7 +36,7 @@ export class MapModalComponent {
       }),
     ],
     zoom: 15,
-    center: latLng(4.5709, -74.2973), // Coordenadas iniciales
+    center: latLng(this.latitude, this.longitude), // Coordenadas iniciales
   };
 
   onMapReady(map: Map) {

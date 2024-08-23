@@ -2,12 +2,13 @@ import { TravelAgentLayoutComponent } from '@/app/presenter/views/shared/layouts
 import { TravelAgentPageComponent } from '@/app/presenter/views/pages/travel-agent/travel-agent-home-page/travel-agent-page.component';
 import { Route } from '@angular/router';
 import { AuthGuardTravelAgent } from '@/app/presenter/views/shared/guards/auth-guard-travel-agent.service';
+import { environment } from '@/environments/environment.development';
 
 export const travelAgentRoutes: Route[] = [
   {
     path: 'travel-agent',
     component: TravelAgentLayoutComponent,
-    canActivate: [AuthGuardTravelAgent],
+    canActivate: environment.production ? [AuthGuardTravelAgent] : [],
     children: [
       {
         path: '',

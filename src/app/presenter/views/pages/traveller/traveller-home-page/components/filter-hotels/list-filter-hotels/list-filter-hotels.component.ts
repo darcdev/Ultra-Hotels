@@ -12,6 +12,7 @@ import { HotelOperationError } from '@/app/core/validations/hotels/hotel-operati
 import { SetHotel } from '@/app/presenter/state/hotels/actions';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { StatusProcessAction } from '@/app/presenter/models/state/statusProcessAction';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-list-filter-hotels',
@@ -21,6 +22,7 @@ import { StatusProcessAction } from '@/app/presenter/models/state/statusProcessA
     SidebarRoomsHotelComponent,
     ListFilterItemComponent,
     ProgressSpinnerModule,
+    ToastModule,
   ],
   templateUrl: './list-filter-hotels.component.html',
   styleUrl: './list-filter-hotels.component.scss',

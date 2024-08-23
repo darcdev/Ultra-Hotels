@@ -3,7 +3,7 @@ import { HotelFilterModel } from '@/app/presenter/models/form/hotel-filter.model
 export class AddActualSearchHotel {
   static readonly type = '[SearchHotelFilter] Add search filter';
 
-  constructor(public payload: HotelFilterModel) {}
+  constructor(public payload: HotelFilterModel | null) {}
 }
 
 export class RemoveActualSearchHotel {

@@ -111,7 +111,7 @@ export class CreateNewHotelModalComponent {
           this.createHotelForm.value?.address?.additionalInfo ?? '',
         agency: this.sessionUserService.getUserSession()?.user?.id,
         latitude: this.createHotelForm.value.address?.latitude ?? 0,
-        longitude: this.createHotelForm.value.address?.latitude ?? 0,
+        longitude: this.createHotelForm.value.address?.longitude ?? 0,
       });
       this.messageService.add({
         severity: 'success',

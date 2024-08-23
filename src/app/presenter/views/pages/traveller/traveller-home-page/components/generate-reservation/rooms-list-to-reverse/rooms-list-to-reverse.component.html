@@ -34,12 +34,18 @@
         </span>
       </div>
       <div class="mt-4">
-        <app-button
-          class="generate_reservation__button"
-          size="small"
-          (click)="openAddGuestsToRoomReservationModal()"
-          >Elegir habitación</app-button
-        >
+        @if (
+          actualUserSession &&
+          actualSearchHotelsFilter?.dateArrive &&
+          actualSearchHotelsFilter?.dateCheckout
+        ) {
+          <app-button
+            class="generate_reservation__button"
+            size="small"
+            (click)="openAddGuestsToRoomReservationModal()"
+            >Elegir habitación
+          </app-button>
+        }
       </div>
     </div>
   </div>

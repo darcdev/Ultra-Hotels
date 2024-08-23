@@ -1,6 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { latLng, LayerGroup, tileLayer, Map, LatLng, Marker } from 'leaflet';
+import {
+  latLng,
+  LayerGroup,
+  tileLayer,
+  Map,
+  LatLng,
+  Marker,
+  icon,
+} from 'leaflet';
 
 interface MapPoint {
   coords: LatLng;
@@ -59,7 +67,14 @@ export class MapHotelsComponent implements OnInit, OnDestroy {
     this.markersLayer.clearLayers();
 
     points.forEach(point => {
-      const marker = new Marker(point.coords)
+      const marker = new Marker(point.coords, {
+        icon: icon({
+          iconSize: [40, 40],
+          iconAnchor: [40, 40],
+          iconUrl: '/assets/img/pinner.png',
+          shadowUrl: 'assets/marker-shadow.png',
+        }),
+      })
         .bindPopup(point.message)
         .openPopup();
       this.markersLayer.addLayer(marker);

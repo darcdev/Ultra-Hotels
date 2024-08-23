@@ -7,12 +7,14 @@
           type="text"
           pInputText
           class="w-full"
-          [formControl]="createHotelForm.controls.name" />
+          [formControl]="createHotelForm.controls.name"
+          data-cy="name-input" />
         <label for="name">Nombre del Hotel</label>
       </p-floatLabel>
       <app-errors-form-messages
         [control]="createHotelForm.controls.name"
-        displayName="El nombre del hotel"></app-errors-form-messages>
+        displayName="El nombre del hotel"
+        data-cy="name-error"></app-errors-form-messages>
     </div>
 
     <div class="w-full flex flex-col">
@@ -21,7 +23,8 @@
           id="description"
           pInputTextarea
           class="w-full"
-          [formControl]="createHotelForm.controls.description"></textarea>
+          [formControl]="createHotelForm.controls.description"
+          data-cy="description-input"></textarea>
         <label for="description">Descripción</label>
       </p-floatLabel>
     </div>
@@ -41,12 +44,14 @@
             [showClear]="true"
             id="countries"
             [formControl]="createHotelForm.controls.address.controls.country"
-            placeholder="El país" />
+            placeholder="El país"
+            data-cy="country-dropdown"></p-dropdown>
           <label for="countries">País</label>
         </p-floatLabel>
         <app-errors-form-messages
           [control]="createHotelForm.controls.address.controls.country"
-          displayName="La ciudad"></app-errors-form-messages>
+          displayName="El país"
+          data-cy="country-error"></app-errors-form-messages>
       </div>
       <div class="w-full">
         <p-floatLabel class="w-full">
@@ -62,12 +67,14 @@
             filterBy="name"
             [showClear]="true"
             [formControl]="createHotelForm.controls.address.controls.city"
-            placeholder="Ciudad" />
+            placeholder="Ciudad"
+            data-cy="city-dropdown"></p-dropdown>
           <label for="address_city">Ciudad/Provincia</label>
         </p-floatLabel>
         <app-errors-form-messages
           [control]="createHotelForm.controls.address.controls.city"
-          displayName="La ciudad"></app-errors-form-messages>
+          displayName="La ciudad"
+          data-cy="city-error"></app-errors-form-messages>
       </div>
     </div>
     <div class="w-full">
@@ -79,7 +86,8 @@
           class="w-full"
           [formControl]="
             createHotelForm.controls.address.controls.additionalInfo
-          " />
+          "
+          data-cy="additional-address-input" />
         <label for="additional_address_info">Dirección</label>
       </p-floatLabel>
       <app-errors-form-messages
@@ -94,9 +102,8 @@
             type="text"
             pInputText
             class="w-full"
-            [formControl]="
-              createHotelForm.controls.address.controls.latitude
-            " />
+            [formControl]="createHotelForm.controls.address.controls.latitude"
+            data-cy="latitude-input" />
           <label for="latitude">Latitud</label>
         </p-floatLabel>
         <app-errors-form-messages
@@ -111,9 +118,8 @@
             type="text"
             pInputText
             class="w-full"
-            [formControl]="
-              createHotelForm.controls.address.controls.latitude
-            " />
+            [formControl]="createHotelForm.controls.address.controls.longitude"
+            data-cy="longitude-input" />
           <label for="longitude">Longitud</label>
         </p-floatLabel>
         <app-errors-form-messages
@@ -121,7 +127,7 @@
           displayName="Longitud"></app-errors-form-messages>
       </div>
       <div class="flex-1">
-        <app-button (click)="openMapModal()">
+        <app-button (click)="openMapModal()" data-cy="open-map-modal-button">
           <app-icon name="matAddLocationAltRound"></app-icon>
         </app-button>
       </div>
@@ -132,6 +138,7 @@
       classStyles="font-bold"
       size="small"
       type="submit"
-      (click)="createHotel()"></app-button>
+      (click)="createHotel()"
+      data-cy="create-hotel-submit"></app-button>
   </form>
 </div>

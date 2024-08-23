@@ -2,7 +2,7 @@
   @for (hotel of listOfHotelsByAgent; track hotel.id) {
     <app-hotel-item [hotel]="hotel"></app-hotel-item>
   } @empty {
-    <p>Cargando hoteles...</p>
+    <p>No se ha encontrado hoteles...</p>
   }
 </section>
 <app-sidebar-rooms-hotel></app-sidebar-rooms-hotel>

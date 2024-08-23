@@ -8,7 +8,7 @@ export interface BookingRoomFormModel {
 
 export interface GuestBookingFormModel {
   fullName: FormControl<string>;
-  birthDate: FormControl<Date | null>;
+  birthDate: FormControl<string | null>;
   gender: FormControl<string>;
   documentType: FormControl<string>;
   documentNumber: FormControl<string>;

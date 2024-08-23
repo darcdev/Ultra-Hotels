@@ -1,5 +1,5 @@
 .list-hotels {
-  @apply flex flex-col  gap-4;
+  @apply flex flex-wrap gap-4;
   @apply md:max-h-[800px];
   overflow-y: auto;
   @apply p-5;

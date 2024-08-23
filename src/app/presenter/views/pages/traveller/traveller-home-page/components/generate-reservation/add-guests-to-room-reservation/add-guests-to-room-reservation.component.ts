@@ -27,11 +27,13 @@ import { HotelFilterModel } from '@/app/presenter/models/form/hotel-filter.model
 import { SearchHotelsFilterState } from '@/app/presenter/state/searchHotelsFilter';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RoomEntity } from '@/app/domain/entities/room.entity';
-import { convertEuropeFormatDateToISO8601 } from '@/app/presenter/views/shared/helpers/convertEuropeFormatDateToISO8601';
 import { CreateCompleteBookingUseCaseService } from '@/app/domain/usecases/booking/create-complete-booking-use-case.service';
 import { MessageService } from 'primeng/api';
 import { BookingOperationError } from '@/app/core/validations/bookings/booking-operation-error';
 import { GuestOperationError } from '@/app/core/validations/guests/guest-operation-error';
+import { StatusProcessAction } from '@/app/presenter/models/state/statusProcessAction';
+import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 export interface AddGuestToBookingDynamicDialogConfig {
   room: RoomEntity;
@@ -53,6 +55,8 @@ export interface AddGuestToBookingDynamicDialogConfig {
     ButtonDirective,
     NgForOf,
     CalendarModule,
+    MessageModule,
+    ProgressSpinnerModule,
   ],
   templateUrl: './add-guests-to-room-reservation.component.html',
   styleUrl: './add-guests-to-room-reservation.component.scss',
@@ -65,6 +69,7 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
   actualSearchHotel$: Observable<HotelFilterModel | null>;
 
   actualRoom: RoomEntity | null = null;
+  stateReservationProcess = StatusProcessAction.IDLE;
 
   constructor(
     private createCompleteBookingUseCaseService: CreateCompleteBookingUseCaseService,
@@ -147,6 +152,7 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
       this.reservationForm.markAllAsTouched();
       return;
     }
+    this.stateReservationProcess = StatusProcessAction.LOADING;
     try {
       await this.createCompleteBookingUseCaseService.execute({
         emergencyContactFullName:
@@ -157,9 +163,7 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
         totalPrice: this.actualRoom!.basePrice + this.actualRoom!.taxes,
         guests: this.reservationForm.value.guests?.map(guest => ({
           fullName: guest.fullName!,
-          birthDate: convertEuropeFormatDateToISO8601(
-            guest.birthDate as unknown as Date
-          ),
+          birthDate: guest.birthDate!,
           gender: guest.gender!,
           documentType: guest.documentType!,
           documentNumber: guest.documentNumber!,
@@ -169,11 +173,14 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
         room: this.actualRoom?.id,
       });
 
+      this.stateReservationProcess = StatusProcessAction.SUCCESS;
+
       this.dynamicDialogRef.close({
         success: true,
       });
     } catch (error) {
-      console.log('error', error);
+      this.stateReservationProcess = StatusProcessAction.ERROR;
+
       if (error instanceof BookingOperationError) {
         console.error(
           'Ha ocurrido un error al crear la reservación',
@@ -189,4 +196,5 @@ export class AddGuestsToRoomReservationComponent implements OnInit {
   }
 
   protected readonly FormGroup = FormGroup;
+  protected readonly StatusProcessAction = StatusProcessAction;
 }
