@@ -1,0 +1,137 @@
+<div class="create-hote-container">
+  <form class="create-hote-container__form">
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <input
+          id="name"
+          type="text"
+          pInputText
+          class="w-full"
+          [formControl]="createHotelForm.controls.name" />
+        <label for="name">Nombre del Hotel</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createHotelForm.controls.name"
+        displayName="El nombre del hotel"></app-errors-form-messages>
+    </div>
+
+    <div class="w-full flex flex-col">
+      <p-floatLabel class="w-full">
+        <textarea
+          id="description"
+          pInputTextarea
+          class="w-full"
+          [formControl]="createHotelForm.controls.description"></textarea>
+        <label for="description">Descripción</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="w-full flex gap-4">
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <p-dropdown
+            styleClass="w-full"
+            class="city-dropdown"
+            [options]="countries"
+            optionLabel="name"
+            [filter]="true"
+            filterBy="name"
+            optionValue="name"
+            appendTo="body"
+            [showClear]="true"
+            id="countries"
+            [formControl]="createHotelForm.controls.address.controls.country"
+            placeholder="El país" />
+          <label for="countries">País</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createHotelForm.controls.address.controls.country"
+          displayName="La ciudad"></app-errors-form-messages>
+      </div>
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <p-dropdown
+            styleClass="w-full"
+            class="city-dropdown"
+            [options]="cities"
+            optionLabel="name"
+            appendTo="body"
+            [filter]="true"
+            id="address_city"
+            optionValue="name"
+            filterBy="name"
+            [showClear]="true"
+            [formControl]="createHotelForm.controls.address.controls.city"
+            placeholder="Ciudad" />
+          <label for="address_city">Ciudad/Provincia</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createHotelForm.controls.address.controls.city"
+          displayName="La ciudad"></app-errors-form-messages>
+      </div>
+    </div>
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <input
+          id="additional_address_info"
+          type="text"
+          pInputText
+          class="w-full"
+          [formControl]="
+            createHotelForm.controls.address.controls.additionalInfo
+          " />
+        <label for="additional_address_info">Dirección</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createHotelForm.controls.address.controls.additionalInfo"
+        displayName="La ciudad"></app-errors-form-messages>
+    </div>
+    <div class="flex gap-2 w-full">
+      <div class="w-full flex-2">
+        <p-floatLabel class="w-full">
+          <input
+            id="latitude"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="
+              createHotelForm.controls.address.controls.latitude
+            " />
+          <label for="latitude">Latitud</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createHotelForm.controls.address.controls.latitude"
+          displayName="Latitud"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full flex-2">
+        <p-floatLabel class="w-full">
+          <input
+            id="longitude"
+            type="text"
+            pInputText
+            class="w-full"
+            [formControl]="
+              createHotelForm.controls.address.controls.latitude
+            " />
+          <label for="longitude">Longitud</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createHotelForm.controls.address.controls.longitude"
+          displayName="Longitud"></app-errors-form-messages>
+      </div>
+      <div class="flex-1">
+        <app-button (click)="openMapModal()">
+          <app-icon name="matAddLocationAltRound"></app-icon>
+        </app-button>
+      </div>
+    </div>
+
+    <app-button
+      text="Crear Nuevo Hotel"
+      classStyles="font-bold"
+      size="small"
+      type="submit"
+      (click)="createHotel()"></app-button>
+  </form>
+</div>

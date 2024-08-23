@@ -1,0 +1,54 @@
+<section class="authentication-user">
+  <div class="authentication-user__header">
+    <img
+      class="main-brand__logo"
+      src="/assets/img/main-logo-ultra-hotels-transparent.png"
+      width="60px"
+      height="60px"
+      alt="Ultra Hotels logo" />
+    <h2 class="authentication-user__header__title text-headline-lg">
+      Iniciar sesión
+    </h2>
+    <div class="type-user-options">
+      <p-toggleButton
+        [(ngModel)]="isTraveller"
+        onLabel="Soy viajero"
+        offLabel="Soy viajero"
+        (onChange)="changedIsTraveller()"
+        styleClass="w-9rem mt-5"
+        ariaLabel="¿Es viajero?">
+        <ng-template pTemplate="offIcon">
+          <span class="mr-4">
+            <app-icon name="matTravelExploreRound"></app-icon>
+          </span>
+        </ng-template>
+      </p-toggleButton>
+      <p-toggleButton
+        [(ngModel)]="isTravelAgent"
+        onLabel="Soy agente de viajes"
+        offLabel="Soy agente de viajes"
+        (onChange)="changedIsTravelAgent()"
+        styleClass="w-9rem mt-5"
+        ariaLabel="¿Es agente de viajes?">
+        <ng-template pTemplate="offIcon">
+          <span class="mr-4">
+            <app-icon name="matCardTravelRound"></app-icon>
+          </span>
+        </ng-template>
+      </p-toggleButton>
+    </div>
+  </div>
+  <div class="authentication-user__body">
+    @if (isTravelAgent) {
+      <app-travel-agenter-authentication-form
+        [closeAuthenticationDialog]="
+          closeDialog.bind(this)
+        "></app-travel-agenter-authentication-form>
+    } @else {
+      <app-traveller-authentication-form
+        [closeAuthenticationDialog]="
+          closeDialog.bind(this)
+        "></app-traveller-authentication-form>
+    }
+  </div>
+</section>

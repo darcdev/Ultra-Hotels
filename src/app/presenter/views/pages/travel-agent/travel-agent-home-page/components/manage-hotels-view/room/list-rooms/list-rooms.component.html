@@ -1,0 +1,7 @@
+<div class="list-rooms-hotel">
+  @for (room of listRooms; track room.id) {
+    <app-room-item [room]="room"></app-room-item>
+  } @empty {
+    <p>No se han encontrado habitaciones asociadas</p>
+  }
+</div>

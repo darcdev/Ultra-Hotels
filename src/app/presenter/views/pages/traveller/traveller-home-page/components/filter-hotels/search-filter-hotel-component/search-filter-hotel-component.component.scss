@@ -1,0 +1,38 @@
+.search-filter-container {
+  border: 1px solid rgb(var(--ds-gray-color-200));
+  @apply rounded-full;
+  @apply px-4 py-2;
+  @apply flex flex-wrap justify-between items-center;
+  @apply w-full;
+  @apply flex-1 gap-4;
+}
+
+@media screen and (max-width: 1599px) {
+  .search-filter-container {
+    @apply flex-col;
+    border: none;
+  }
+}
+
+.search-filter-container .search-filter__button {
+  width: 120px;
+  @apply flex justify-center items-center;
+  @apply text-center;
+  @apply rounded-full;
+}
+
+::ng-deep .search-filter-container .city-dropdown .p-dropdown {
+  @apply rounded-full;
+  @apply w-[100%];
+}
+
+::ng-deep .search-filter-container .date-arrive .p-calendar input,
+::ng-deep .search-filter-container .date-checkout .p-calendar input {
+  @apply rounded-full;
+  @apply w-[100%];
+}
+
+::ng-deep .search-filter-container .date-arrive .p-calendar,
+::ng-deep .search-filter-container .date-checkout .p-calendar {
+  @apply w-[100%];
+}

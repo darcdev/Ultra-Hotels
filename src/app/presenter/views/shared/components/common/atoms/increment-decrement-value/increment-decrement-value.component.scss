@@ -1,0 +1,32 @@
+.counter {
+  @apply flex gap-4 items-center;
+  border: 1px solid rgb(var(--ds-gray-color-200));
+  @apply px-4 py-2;
+  @apply rounded-full;
+}
+
+.counter .counter__buttons {
+  @apply flex items-center gap-4;
+  flex: 1;
+}
+
+.counter__buttons .counter__minus,
+.counter__buttons .counter__plus {
+  @apply px-2 py-1;
+  @apply flex items-center;
+  @apply rounded-full;
+  @apply text-gray-300;
+  border: 1px solid rgb(var(--ds-gray-color-300));
+}
+
+.counter__buttons .counter__minus:hover,
+.counter__buttons .counter__plus:hover {
+  @apply text-gray-500;
+  border: 1px solid rgb(var(--ds-gray-color-500));
+}
+
+.counter__buttons .counter__minus.min-reached,
+.counter__buttons .counter__plus.max-reached {
+  @apply text-gray-100;
+  border: 1px solid rgb(var(--ds-gray-color-100));
+}

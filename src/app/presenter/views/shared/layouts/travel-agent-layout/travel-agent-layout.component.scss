@@ -1,0 +1,24 @@
+.travel-agent-layout {
+  @apply flex flex-col;
+  padding-left: var(--main-x-space);
+  padding-right: var(--main-x-space);
+  @apply mt-5;
+}
+
+.travel-agent-layout .travel-agent-workspace {
+  @apply flex flex-col;
+  @apply bg-white;
+  @apply rounded-lg;
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  min-height: calc(100vh - var(--main-header-height) - 5rem);
+}
+
+.main-footer-container {
+  @apply block;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  @apply mt-3;
+}

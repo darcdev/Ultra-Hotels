@@ -1,0 +1,28 @@
+.room-hotel-item {
+  border: 1px solid rgb(var(--ds-gray-color-100));
+  @apply p-2;
+  @apply w-full;
+}
+
+.room-hotel-item .room-item-body {
+  @apply flex flex-wrap md:flex-nowrap gap-4;
+  @apply w-full;
+}
+
+.room-item-body .room-item__image {
+  @apply w-full h-[200px];
+  @apply md:w-[200px] md:h-full;
+  object-fit: cover;
+}
+
+.room-item-body .room-item-body__info {
+  @apply w-full;
+}
+
+.room-item-body__info .room-item-body__pre-header {
+  @apply flex gap-4 justify-between;
+}
+
+.room-item-body__info .hotel-item-body__title-room {
+  @apply font-bold;
+}

@@ -1,0 +1,19 @@
+.guests_info__emergency_contact .guests_info__emergency_contact__title {
+  @apply font-bold flex items-center;
+}
+
+.guests_info__emergency_contact .guests_info__emergency_contact__info {
+  @apply mt-5;
+}
+
+.guests-booking-list .guests_information {
+  @apply mt-5;
+}
+
+.guests_information__title {
+  @apply font-bold;
+}
+
+.guests_information__list {
+  @apply flex gap-2 mt-5;
+}

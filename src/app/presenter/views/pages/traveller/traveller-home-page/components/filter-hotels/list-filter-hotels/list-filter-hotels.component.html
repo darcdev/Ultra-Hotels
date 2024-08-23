@@ -1,0 +1,20 @@
+<section class="list-hotels">
+  @if (stateLoading === StatusProcessAction.LOADING) {
+    <div class="flex flex-col items-center">
+      <p-progressSpinner ariaLabel="loading" />
+      <p>Buscando coincidencias....</p>
+    </div>
+  } @else if (stateLoading === StatusProcessAction.ERROR) {
+    <div class="flex flex-col items-center">
+      <p>Ha ocurrido un error al filtrar los hoteles, intente de nuevo....</p>
+    </div>
+  } @else {
+    @for (hotel of listOfHotelsFilter; track hotel.id) {
+      <app-list-filter-item [hotel]="hotel"></app-list-filter-item>
+    } @empty {
+      <p>
+        No se encontraron hoteles disponibles en esa fecha, escoja diferente
+      </p>
+    }
+  }
+</section>

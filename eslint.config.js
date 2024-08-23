@@ -47,6 +47,8 @@ module.exports = [
         },
       ],
       'prettier/prettier': 'error', // Prettier rule added
+      'comma-dangle': ['off'],
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
   {

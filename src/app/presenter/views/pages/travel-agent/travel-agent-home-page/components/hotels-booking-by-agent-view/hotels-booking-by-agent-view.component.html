@@ -1,0 +1,7 @@
+<section class="list-reservations-by-agent">
+  @for (reservation of listOfReservations; track reservation.id) {
+    <app-reservation-item [reservation]="reservation"></app-reservation-item>
+  } @empty {
+    <p>Cargando reservaciones...</p>
+  }
+</section>

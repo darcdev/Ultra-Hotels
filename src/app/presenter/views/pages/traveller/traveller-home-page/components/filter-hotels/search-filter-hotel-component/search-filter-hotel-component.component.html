@@ -1,0 +1,48 @@
+<div class="search-filter-container">
+  <div class="flex-1 w-full">
+    <p-dropdown
+      class="city-dropdown"
+      [options]="cities"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      [formControl]="searchHotelsForm.controls.city"
+      placeholder="Ciudad" />
+  </div>
+  <div class="flex-1 w-full min-w-[8rem]">
+    <p-calendar
+      clear="sss"
+      [showButtonBar]="true"
+      class="date-arrive"
+      [minDate]="minDateCalendar"
+      placeholder="Fecha de llegada"
+      [formControl]="searchHotelsForm.controls.dateArrive" />
+  </div>
+  <div class="flex-1 w-full min-w-[8rem]">
+    <p-calendar
+      [showButtonBar]="true"
+      class="date-checkout"
+      [minDate]="minDateCalendar"
+      placeholder="Fecha de partida"
+      [formControl]="searchHotelsForm.controls.dateCheckout" />
+  </div>
+  <div class="flex-1 w-full min-w-[8rem]">
+    <app-increment-decrement
+      [label]="
+        (searchHotelsForm.controls.numGuests.value || 0) === 1
+          ? 'Huesped'
+          : 'Huespedes'
+      "
+      [min]="0"
+      [max]="12"
+      [control]="searchHotelsForm.controls.numGuests"></app-increment-decrement>
+  </div>
+  <button
+    pButton
+    class="search-filter__button"
+    type="submit"
+    (click)="searchHotelsByFilters()">
+    <app-icon name="matSearchRound"></app-icon>Buscar
+  </button>
+</div>

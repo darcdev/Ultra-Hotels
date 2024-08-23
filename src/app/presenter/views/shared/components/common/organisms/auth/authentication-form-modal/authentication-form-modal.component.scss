@@ -1,0 +1,11 @@
+.authentication-user .authentication-user__header {
+  @apply flex flex-col items-center;
+}
+
+.authentication-user__header .authentication-user__header__title {
+  @apply font-bold;
+}
+
+.authentication-user__header .type-user-options {
+  @apply flex gap-2 flex-wrap items-center justify-center;
+}

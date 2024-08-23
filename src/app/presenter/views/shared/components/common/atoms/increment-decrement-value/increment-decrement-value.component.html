@@ -1,0 +1,23 @@
+<div class="counter">
+  <div class="counter__buttons">
+    <button
+      [class]="[
+        'counter__minus',
+        control.value === this.min ? 'min-reached' : '',
+      ]"
+      (click)="decreaseValue()">
+      <app-icon name="matMinusRound" size="1.2rem"></app-icon>
+    </button>
+    <span class="text-center text-[0.8rem]">
+      {{ control.value }} {{ label }}
+    </span>
+    <button
+      [class]="[
+        'counter__plus',
+        control.value === this.max ? 'max-reached' : '',
+      ]"
+      (click)="increaseValue()">
+      <app-icon name="matAddRound" size="1.2rem"></app-icon>
+    </button>
+  </div>
+</div>

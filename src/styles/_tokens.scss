@@ -2,51 +2,51 @@
 
 :root {
   /* Colors */
-  --primary-color: 113 160 193;
-  --secondary-color: 73 91 99;
-  --accent-color: 234 212 168;
-  --background-color: 241 250 238;
-  --primary-text-color: 255 255 255;
-  --secondary-text-color: 255 255 255;
-  --border-color: 90 120 140;
-  --highlight-bg: 255 255 255;
-  --highlight-text-color: 0 0 0;
+  --ds-primary-color: 113 160 193;
+  --ds-secondary-color: 73 91 99;
+  --ds-accent-color: 234 212 168;
+  --ds-background-color: 241 250 238;
+  --ds-primary-text-color: 255 255 255;
+  --ds-secondary-text-color: 255 255 255;
+  --ds-border-color: 90 120 140;
+  --ds-highlight-bg: 255 255 255;
+  --ds-highlight-text-color: 0 0 0;
 
-  --error-color: 220 53 69;
-  --success-color: 40 167 69;
-  --info-color: 23 162 184;
-  --warning-color: 255 193 7;
+  --ds-error-color: 220 53 69;
+  --ds-success-color: 40 167 69;
+  --ds-info-color: 23 162 184;
+  --ds-warning-color: 255 193 7;
 
-  --gray-color: 105 105 105;
-  --black-color: 15 26 34;
-  --white-color: 255 255 255;
+  --ds-gray-color: 105 105 105;
+  --ds-black-color: 15 26 34;
+  --ds-white-color: 255 255 255;
 
-  /* Tipography */
-  --font-family-base: 'Roboto', sans-serif;
-  --font-size-base: 16px;
-  --font-weight-bold: 700;
-  --line-height: 1.5;
+  /* Typography */
+  --ds-font-family-base: 'Inter Variable', sans-serif;
+  --ds-font-size-base: 16px;
+  --ds-font-weight-bold: 700;
+  --ds-line-height: 1.5;
 
   /* Spacing */
-  --spacing-xxs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 40px;
-  --spacing-xxxl: 64px;
+  --ds-spacing-xxs: 4px;
+  --ds-spacing-xs: 8px;
+  --ds-spacing-sm: 12px;
+  --ds-spacing-md: 16px;
+  --ds-spacing-lg: 24px;
+  --ds-spacing-xl: 32px;
+  --ds-spacing-xxl: 40px;
+  --ds-spacing-xxxl: 64px;
 
   /* Border radius */
-  --border-radius-base: 4px;
-  --border-radius-sm: 2px;
-  --border-radius-lg: 8px;
-  --border-radius-xl: 16px;
-  --border-radius-full: 9999px;
+  --ds-border-radius-base: 4px;
+  --ds-border-radius-sm: 2px;
+  --ds-border-radius-lg: 8px;
+  --ds-border-radius-xl: 16px;
+  --ds-border-radius-full: 9999px;
 
   /* Box shadow */
-  --box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
-  --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --box-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --ds-box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --ds-box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --ds-box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --ds-box-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
 }

@@ -1,12 +1,8 @@
-### STAGE 1:COMPILATION ###
-
-FROM node:20-alpine3.19 as build
-
-RUN mkdir -p /app
+FROM node:20.0.0 as build
 
 WORKDIR /app
 
-COPY package*.json /app
+COPY package*.json ./
 
 RUN npm install -g @angular/cli
 
@@ -16,12 +12,8 @@ COPY . .
 
 RUN ng build --configuration=production
 
+FROM nginx:latest
 
-### STAGE 2:RUN ###
-
-FROM nginx:1.17.1-alpine
-
-COPY --from=build app/dist/ultra-hotels/browser /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build app/dist/ultra-hotels /usr/share/nginx/html
 
 EXPOSE 80

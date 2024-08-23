@@ -1,0 +1,8 @@
+@media screen and (max-width: 769px) {
+  ::ng-deep
+    p-dynamicdialog
+    .generate-reservation-dialog
+    .p-dialog.p-dynamic-dialog {
+    width: 90%;
+  }
+}

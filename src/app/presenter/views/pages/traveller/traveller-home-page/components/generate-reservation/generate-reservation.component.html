@@ -1,0 +1,17 @@
+<div class="card">
+  <p-carousel
+    [value]="rooms"
+    [numVisible]="2"
+    [numScroll]="3"
+    [circular]="true"
+    styleClass="generate-reservation-dialog"
+    [responsiveOptions]="responsiveOptions">
+    <ng-template let-room pTemplate="item" class="flex gap-4">
+      <app-rooms-list-to-reverse
+        [room]="room"
+        [dynamicGenerateReservationDialogRef]="
+          dynamicDialogRef
+        "></app-rooms-list-to-reverse>
+    </ng-template>
+  </p-carousel>
+</div>

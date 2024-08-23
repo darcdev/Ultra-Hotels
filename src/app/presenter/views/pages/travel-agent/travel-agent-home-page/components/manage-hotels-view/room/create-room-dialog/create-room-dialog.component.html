@@ -1,0 +1,100 @@
+<div class="create-room-container">
+  <form class="create-room-container__form" (ngSubmit)="createRoom()">
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <p-dropdown
+          [formControl]="createRoomForm.controls.type"
+          pAutoFocus
+          [options]="roomHotelTypesList"
+          id="typeRoom"
+          styleClass="w-full"
+          optionLabel="value"
+          placeholder="Select a City" />
+        <label for="typeRoom">Tipo de Habitación</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createRoomForm.controls.type"
+        displayName="El tipo de habitación"></app-errors-form-messages>
+    </div>
+
+    <div class="w-full flex gap-4">
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="basePrice"
+            type="number"
+            pInputText
+            class="w-full"
+            [formControl]="createRoomForm.controls.basePrice" />
+          <label for="basePrice">Precio Base</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createRoomForm.controls.basePrice"
+          displayName="El precio base"></app-errors-form-messages>
+      </div>
+
+      <div class="w-full">
+        <p-floatLabel class="w-full">
+          <input
+            id="taxes"
+            type="number"
+            pInputText
+            class="w-full"
+            [formControl]="createRoomForm.controls.taxes" />
+          <label for="taxes">Impuestos</label>
+        </p-floatLabel>
+        <app-errors-form-messages
+          [control]="createRoomForm.controls.taxes"
+          displayName="Los impuestos"></app-errors-form-messages>
+      </div>
+    </div>
+
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <input
+          id="roomNumber"
+          type="text"
+          pInputText
+          class="w-full"
+          [formControl]="createRoomForm.controls.roomNumber" />
+        <label for="roomNumber">Número de Habitación</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createRoomForm.controls.roomNumber"
+        displayName="El número de habitación"></app-errors-form-messages>
+    </div>
+
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <input
+          id="capacity"
+          type="number"
+          pInputText
+          class="w-full"
+          [formControl]="createRoomForm.controls.capacity" />
+        <label for="capacity">Capacidad de personas</label>
+      </p-floatLabel>
+      <app-errors-form-messages
+        [control]="createRoomForm.controls.capacity"
+        displayName="La capacidad"></app-errors-form-messages>
+    </div>
+
+    <div class="w-full">
+      <p-floatLabel class="w-full">
+        <textarea
+          id="description"
+          pInputTextarea
+          class="w-full"
+          [formControl]="createRoomForm.controls.description"></textarea>
+        <label for="description">Descripción</label>
+      </p-floatLabel>
+    </div>
+
+    <app-button
+      text="Crear Nueva Habitación"
+      classStyles="font-bold"
+      size="small"
+      type="submit">
+    </app-button>
+  </form>
+</div>

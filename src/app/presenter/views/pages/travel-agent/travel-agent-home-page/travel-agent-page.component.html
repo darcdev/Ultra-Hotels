@@ -1,0 +1,24 @@
+<div class="w-full">
+  <p-tabView styleClass="tabview-custom">
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+          <app-icon name="matBorderColorRound"></app-icon>
+          <span class="font-bold white-space-nowrap m-0">
+            Gestionar hoteles
+          </span>
+        </div>
+      </ng-template>
+      <app-manage-hotels-view></app-manage-hotels-view>
+    </p-tabPanel>
+    <p-tabPanel header="Header II">
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+          <app-icon name="matFormatListBulletedRound"></app-icon>
+          <span class="font-bold white-space-nowrap m-0"> Reservaciones </span>
+        </div>
+      </ng-template>
+      <app-hotel-booking-by-agent-view></app-hotel-booking-by-agent-view>
+    </p-tabPanel>
+  </p-tabView>
+</div>

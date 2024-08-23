@@ -1,0 +1,46 @@
+<div class="room-to-reserve-item">
+  <div class="room-to-reserve-item-body">
+    <img
+      alt="Hotel Alto"
+      class="room-to-reserve-item__image"
+      src="https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg" />
+
+    <div class="room-to-reserve-item-body__info">
+      <h3 class="room-to-reserve-item-body__title-room">
+        {{ room?.type }}
+      </h3>
+      <div class="mt-2 flex flex-col gap-2">
+        <span class="text-caption-lg">
+          <app-icon
+            name="matPeopleOutlineRound"
+            size="1.2rem"
+            class="mr-2"></app-icon>
+          {{ room?.capacity }}
+          {{ room.capacity === 1 ? 'persona' : 'personas' }}
+        </span>
+        <span class="text-caption-lg">
+          <app-icon
+            name="matLocationOnRound"
+            size="1.2rem"
+            class="mr-2"></app-icon>
+          {{ room?.roomNumber }}
+        </span>
+        <span class="text-caption-lg">
+          <app-icon
+            name="matAttachMoneyRound"
+            size="1.2rem"
+            class="mr-2"></app-icon>
+          {{ (room?.basePrice ?? 0) + (room?.taxes ?? 0) }} COP
+        </span>
+      </div>
+      <div class="mt-4">
+        <app-button
+          class="generate_reservation__button"
+          size="small"
+          (click)="openAddGuestsToRoomReservationModal()"
+          >Elegir habitación</app-button
+        >
+      </div>
+    </div>
+  </div>
+</div>

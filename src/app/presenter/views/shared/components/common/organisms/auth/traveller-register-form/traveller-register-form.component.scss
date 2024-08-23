@@ -1,0 +1,35 @@
+.register-user .register-user__header {
+  @apply flex flex-col items-center;
+}
+
+.register-user__header .register-user__header__title {
+  @apply font-bold;
+}
+
+.register-user__header .type-user-options {
+  @apply flex gap-2 flex-wrap items-center justify-center;
+}
+
+.register-user__body .oauth-container {
+  @apply flex flex-col items-center gap-8;
+  @apply px-lg;
+  @apply mt-8;
+}
+
+.register-user__body .traveller-authentication-form {
+  @apply px-lg;
+  @apply flex flex-col items-center gap-8;
+  @apply mt-8;
+}
+
+.register-user__body .oauth-container .separator-oauth {
+  height: 1px;
+  width: 45%;
+  display: inline-block;
+  background: rgb(var(--ds-gray-color-200));
+}
+
+.register-user__body .register-redirect-button {
+  @apply text-secondary-900;
+  @apply underline;
+}

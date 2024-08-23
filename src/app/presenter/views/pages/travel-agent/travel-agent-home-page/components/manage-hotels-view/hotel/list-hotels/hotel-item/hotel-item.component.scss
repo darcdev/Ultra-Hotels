@@ -1,0 +1,34 @@
+::ng-deep p-card.hotel-item .p-card {
+  border-radius: 20px;
+}
+
+.hotel-item {
+}
+
+.hotel-item .hotel-item-header__image {
+  max-height: 120px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+::ng-deep p-card.hotel-item .p-card-body .p-card-content {
+  @apply p-0;
+}
+
+.hotel-item-body .hotel-item-body__title-hotel {
+  @apply p-0;
+  @apply mt-2;
+  @apply font-bold truncate;
+}
+
+.hotel-item-body .hotel-item-body__description-hotel {
+  @apply line-clamp-2;
+}
+
+.hotel-item-footer {
+}
+
+.hotel-item-footer__settings {
+  @apply flex justify-between;
+}

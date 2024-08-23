@@ -1,0 +1,7 @@
+.hotel-settings {
+  @apply flex justify-center;
+}
+
+.hotel-settings__button:hover {
+  @apply bg-secondary-50 rounded-full;
+}

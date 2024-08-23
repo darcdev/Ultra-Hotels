@@ -1,0 +1,32 @@
+<div class="card hotel-settings">
+  <button class="hotel-settings__button" (click)="config.toggle($event)">
+    <app-icon name="matPendingRound"></app-icon>
+  </button>
+  <p-overlayPanel #config class="hotel-settings__overlay">
+    <div class="flex flex-col gap-3 items-start">
+      <button class="hover:bg-primary-50 p-2 w-full" (click)="viewRooms()">
+        <span class="text-primary-900">
+          <app-icon name="matBedroomParentRound"></app-icon>
+        </span>
+        Ver habitaciónes
+      </button>
+      <button
+        class="hover:bg-primary-50 p-2 w-full"
+        (click)="openEditHotelModal()">
+        <span class="text-primary-900">
+          <app-icon name="matEditNoteRound"></app-icon>
+        </span>
+        Editar hotel
+      </button>
+      <button
+        class="hover:bg-primary-50 p-2 w-full"
+        (click)="handleDeleteHotel($event)">
+        <span class="text-error">
+          <app-icon name="matDeleteRound"></app-icon>
+        </span>
+        Eliminar hotel
+      </button>
+    </div>
+  </p-overlayPanel>
+</div>
+<p-confirmDialog></p-confirmDialog>

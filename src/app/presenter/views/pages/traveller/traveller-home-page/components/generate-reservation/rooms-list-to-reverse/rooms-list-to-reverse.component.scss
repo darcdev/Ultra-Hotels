@@ -1,0 +1,32 @@
+.room-to-reserve-item {
+  border: 1px solid rgb(var(--ds-gray-color-100));
+  @apply p-2;
+  @apply w-full;
+}
+
+.room-to-reserve-item .room-to-reserve-item-body {
+  @apply flex flex-col md:flex-nowrap gap-4;
+}
+
+.room-to-reserve-item-body .room-to-reserve-item__image {
+  @apply w-full h-[200px];
+  @apply md:max-w-full md:max-h-[350px];
+  object-fit: cover;
+}
+
+.room-to-reserve-item-body .room-to-reserve-item-body__info {
+  @apply w-full;
+}
+
+.room-to-reserve-item-body__info .room-to-reserve-item-body__pre-header {
+  @apply flex gap-4 justify-between;
+}
+
+.room-to-reserve-item-body__info .room-to-reserve-item-body__title-room {
+  @apply font-bold;
+}
+
+.room-to-reserve-item-body .generate_reservation__button {
+  @apply bg-primary text-white;
+  @apply rounded-[10px];
+}
